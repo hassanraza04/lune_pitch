@@ -53,7 +53,7 @@
 
     // Close if the viewport grows past the mobile breakpoint (e.g., orientation change)
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 720 && navLinks.classList.contains('is-open')) closeMenu();
+      if (window.innerWidth > 900 && navLinks.classList.contains('is-open')) closeMenu();
     });
   }
 
