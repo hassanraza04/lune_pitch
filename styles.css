@@ -1207,8 +1207,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .page-header { padding-top: calc(var(--nav-height) + 60px); padding-bottom: 60px; }
   .cta-banner { padding: 40px 24px; }
   .feature-row { gap: 32px; margin-bottom: 56px; }
-  .hero-cta { gap: 12px; }
-  .hero-cta .btn { flex: 1; justify-content: center; min-width: 0; }
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
   .stats { padding: 28px 20px; }
   .stat-value { font-size: 1.85rem; }
   .stats { gap: 14px; }
