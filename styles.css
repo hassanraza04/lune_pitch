@@ -209,14 +209,29 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: flex;
   align-items: center;
   background: transparent;
-  transition: background var(--t-med) var(--ease), backdrop-filter var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
   border-bottom: 1px solid transparent;
+  transition: border-color var(--t-med) var(--ease);
+}
+/* Frosted blur lives on a pseudo-element so .nav itself stays free of
+   backdrop-filter — otherwise that property creates a containing block for
+   position:fixed descendants (like the mobile drawer), which would clip the
+   drawer to the 72px nav height once scrolled. */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  transition: background var(--t-med) var(--ease), backdrop-filter var(--t-med) var(--ease);
+  pointer-events: none;
 }
 .nav.is-scrolled {
+  border-bottom-color: var(--border);
+}
+.nav.is-scrolled::before {
   background: var(--bg-glass);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-bottom-color: var(--border);
 }
 
 .nav .container {
