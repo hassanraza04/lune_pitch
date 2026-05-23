@@ -981,6 +981,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .enrich-mock-input .tk-k { color: var(--mint-bright); }
 .enrich-mock-input .tk-s { color: #E6C68A; }       /* strings = warm amber */
 .enrich-mock-input .tk-n { color: #C3B6FF; }       /* numbers = lavender */
+.enrich-mock-input .tk-c { color: var(--text-dim); font-style: italic; }  /* comment */
 
 .enrich-mock-arrow {
   text-align: center;
