@@ -3,4 +3,4 @@ Allow: /
 Disallow: /404.html
 Disallow: /pitch.html
 
-Sitemap: https://lunepitch.hr2616.workers.dev/sitemap.xml
+Sitemap: https://lunepitch.pages.dev/sitemap.xml
