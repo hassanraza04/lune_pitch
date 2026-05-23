@@ -1082,7 +1082,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    ============================================ */
 
 .page-header {
-  padding: calc(var(--nav-height) + 100px) 0 80px;
+  padding: calc(var(--nav-height) + 48px) 0 56px;
   text-align: center;
   position: relative;
   overflow: hidden;
