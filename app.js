@@ -23,28 +23,37 @@
   window.addEventListener('scroll', setNavState, { passive: true });
 
   if (navToggle && navLinks) {
+    const closeMenu = () => {
+      navLinks.classList.remove('is-open');
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
+    };
+    const openMenu = () => {
+      navLinks.classList.add('is-open');
+      navToggle.classList.add('is-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open');
+    };
+
     navToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('is-open');
-      navToggle.classList.toggle('is-open', open);
-      navToggle.setAttribute('aria-expanded', String(open));
+      if (navLinks.classList.contains('is-open')) closeMenu();
+      else openMenu();
     });
 
-    $$('a', navLinks).forEach((a) =>
-      a.addEventListener('click', () => {
-        navLinks.classList.remove('is-open');
-        navToggle.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      })
-    );
+    $$('a', navLinks).forEach((a) => a.addEventListener('click', closeMenu));
 
-    // Close menu on Escape
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('is-open')) {
-        navLinks.classList.remove('is-open');
-        navToggle.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
+        closeMenu();
         navToggle.focus();
       }
+    });
+
+    // Close if the viewport grows past the mobile breakpoint (e.g., orientation change)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 720 && navLinks.classList.contains('is-open')) closeMenu();
     });
   }
 
