@@ -388,30 +388,6 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    Hero — redesigned with the lunar motif
    ============================================ */
 
-/* Decorative moon graphic positioned behind/beside the hero copy.
-   Lives inside .hero and animates a slow drift on load. */
-.hero-moon {
-  position: absolute;
-  right: -80px;
-  top: 14%;
-  width: 480px;
-  height: 480px;
-  pointer-events: none;
-  filter: drop-shadow(0 0 70px rgba(111, 207, 181, 0.16));
-  opacity: 0.9;
-  z-index: 0;
-  /* Soft radial fade so the disc edges blend into the section background
-     instead of clipping at the section boundary. */
-  -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 58%, transparent 92%);
-          mask-image: radial-gradient(circle at 50% 45%, #000 58%, transparent 92%);
-  animation: moon-drift 16s ease-in-out infinite alternate;
-}
-.hero-moon svg { width: 100%; height: 100%; display: block; }
-@keyframes moon-drift {
-  from { transform: translate3d(0, 0, 0); }
-  to   { transform: translate3d(-14px, -10px, 0); }
-}
-
 /* Tiny scattered stars — pure CSS dot pattern */
 .hero-stars {
   position: absolute;
@@ -429,16 +405,6 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
     radial-gradient(1px 1px at 96% 14%, rgba(255, 255, 255, 0.6), transparent 60%),
     radial-gradient(1px 1px at 36% 38%, rgba(143, 224, 203, 0.4), transparent 60%);
   mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 80%);
-}
-
-@media (max-width: 900px) {
-  .hero-moon {
-    width: 340px;
-    height: 340px;
-    right: -120px;
-    top: 4%;
-    opacity: 0.5;
-  }
 }
 
 /* ============================================
@@ -2096,7 +2062,6 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
   /* Kill decorative continuous animations */
-  .hero-moon { animation: none; }
   .hero-badge .dot { animation: none; }
   /* Disable button/link micro-transforms on hover */
   .btn--primary:hover,
