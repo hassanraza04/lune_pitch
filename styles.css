@@ -1593,6 +1593,249 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .error-shell p { max-width: 480px; margin: 0 auto 2rem; }
 
 /* ============================================
+   Cookie consent (banner + preferences modal)
+   ============================================ */
+
+.consent-banner {
+  position: fixed;
+  z-index: 200;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  pointer-events: none;
+}
+.consent-banner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.consent-banner-inner {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.consent-banner-text { flex: 1; min-width: 280px; }
+.consent-banner-text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.consent-banner-text p {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
+.consent-banner-text a {
+  color: var(--mint);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent-banner-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.consent-banner-buttons .btn {
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* ---------- Modal ---------- */
+
+.consent-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+.consent-modal[hidden] { display: none; }
+.consent-modal.is-visible { opacity: 1; }
+
+.consent-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 12, 9, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.consent-modal-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 2rem 2rem 1.5rem;
+  background: var(--bg-elev-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 80px -20px rgba(0,0,0,0.7);
+}
+.consent-modal.is-visible .consent-modal-card {
+  animation: consent-pop 0.22s var(--ease);
+}
+@keyframes consent-pop {
+  from { transform: translateY(8px) scale(0.98); opacity: 0.6; }
+  to { transform: none; opacity: 1; }
+}
+
+.consent-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: all var(--t-fast) var(--ease);
+}
+.consent-modal-close:hover {
+  background: var(--bg-elev-2);
+  color: var(--text);
+}
+
+.consent-modal-card h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  padding-right: 36px;
+}
+.consent-modal-intro {
+  font-size: 0.92rem;
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+}
+
+.consent-category {
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+}
+.consent-category:first-of-type { border-top: none; padding-top: 0; }
+.consent-category p {
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+}
+.consent-category-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.consent-category-label,
+.consent-category-row strong {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+.consent-locked-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mint);
+  padding: 0.25rem 0.6rem;
+  background: var(--mint-glow);
+  border-radius: 4px;
+}
+
+/* Toggle switch */
+.consent-toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.consent-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.consent-toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.consent-toggle-track::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  transition: transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.consent-toggle input:checked ~ .consent-toggle-track {
+  background: var(--mint);
+  border-color: var(--mint);
+}
+.consent-toggle input:checked ~ .consent-toggle-track::before {
+  transform: translateX(20px);
+  background: var(--bg);
+}
+.consent-toggle input:focus-visible ~ .consent-toggle-track {
+  box-shadow: 0 0 0 3px var(--mint-glow);
+}
+
+.consent-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+.consent-modal-actions .btn {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .consent-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 14px 16px;
+  }
+  .consent-banner-inner { flex-direction: column; align-items: stretch; gap: 14px; }
+  .consent-banner-buttons { justify-content: flex-end; }
+  .consent-modal-card { padding: 1.5rem 1.25rem; }
+  .consent-modal-actions { justify-content: stretch; }
+  .consent-modal-actions .btn { flex: 1; justify-content: center; }
+}
+
+/* ============================================
    Responsive — new components
    ============================================ */
 

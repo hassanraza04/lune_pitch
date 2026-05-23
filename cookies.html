@@ -79,7 +79,13 @@
         </ul>
 
         <h2>Managing cookies</h2>
-        <p>You can clear cookies and adjust preferences any time from your browser's settings.</p>
+        <p>Use the panel below at any time to change which categories of cookies we may set. You can also clear cookies via your browser's settings.</p>
+        <p style="margin-top: 1.25rem;">
+          <button type="button" class="btn btn--primary" data-consent-toggle>
+            Manage cookie preferences
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+          </button>
+        </p>
 
         <h2>Contact</h2>
         <p>Questions: <a href="mailto:privacy@lunedata.io">privacy@lunedata.io</a>.</p>
@@ -135,7 +141,7 @@
         <div>
           <span>© 2026 Lune Data. <a href="https://www.bing.com/maps?where=DIFC%2C%20Dubai%2C%20AE" target="_blank" rel="noopener noreferrer" class="footer-address">156 Gate Avenue, DIFC, Dubai, UAE</a>.</span>
           <span class="footer-legal-links">
-            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html" aria-current="page">Cookie Policy</a>
+            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html" aria-current="page">Cookie Policy</a> · <a href="#" data-consent-toggle>Cookie preferences</a>
           </span>
         </div>
         <div class="socials">
@@ -145,6 +151,7 @@
     </div>
   </footer>
 
+  <script src="consent.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>
