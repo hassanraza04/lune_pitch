@@ -92,35 +92,71 @@
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Carbon footprint per transaction</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Recurring detection and subscription matching</li>
           </ul>
-          <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+          <div class="feature-cta-row">
+            <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+            <a href="docs/enrichment.html" class="btn btn--text">See the API <span class="arrow">→</span></a>
+          </div>
         </div>
         <div class="feature-visual reveal" data-delay="1">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Data dashboard" loading="lazy" />
+          <!-- Illustrated enrichment payload, not a stock photo -->
+          <div class="enrich-mock" aria-label="Sample enriched transaction payload">
+            <div class="enrich-mock-input">
+              <span class="enrich-mock-label">Raw</span>
+              <code>POS PURCHASE STBKS #1247 SHJ AED 21.00</code>
+            </div>
+            <div class="enrich-mock-arrow" aria-hidden="true">↓</div>
+            <div class="enrich-mock-output">
+              <span class="enrich-mock-label">Enriched</span>
+              <div class="enrich-mock-rows">
+                <div><span>Merchant</span><strong>Starbucks</strong></div>
+                <div><span>Category</span><strong>Food &amp; drink · Coffee</strong></div>
+                <div><span>Location</span><strong>Sharjah, UAE</strong></div>
+                <div><span>Carbon</span><strong>0.21 kg CO₂e</strong></div>
+                <div><span>Recurring</span><strong>Daily routine</strong></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="container"><div class="moon-divider" aria-hidden="true"><span class="moon-divider-phase"></span><span class="moon-divider-phase"></span><span class="moon-divider-phase"></span><span class="moon-divider-phase"></span><span class="moon-divider-phase"></span></div></div>
-
-  <!-- Engage — lavender accent, alt bg -->
+  <!-- Engage — lavender accent, alt bg, different layout: three sub-modules -->
   <section class="section section--alt" id="engage">
     <div class="container">
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-text reveal">
-          <span class="eyebrow eyebrow--engage">Engage</span>
-          <h2>White-label financial UI your customers love.</h2>
-          <p>Embeddable spending insights, goal-setting, budgets, and carbon impact visualizations. Built mobile-first and ready to drop into your app. Customers come back for the experience; you keep the data.</p>
-          <ul class="feature-list">
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Drop-in widgets and full white-label components</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Goal tracking, smart budgets, and proactive nudges</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Carbon and sustainability tracking</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Full RTL support, Arabic-first design</li>
-          </ul>
-          <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+      <div class="engage-header reveal">
+        <span class="eyebrow eyebrow--engage">Engage</span>
+        <h2>White-label financial UI your customers love.</h2>
+        <p>Embeddable spending insights, goal-setting, budgets, and carbon impact visualizations. Built mobile-first and ready to drop into your app.</p>
+      </div>
+      <div class="engage-sub-grid">
+        <div class="engage-sub reveal">
+          <div class="engage-sub-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3>Budgets &amp; goals</h3>
+          <p>Smart budgets and goal tracking with proactive nudges, embedded in your app.</p>
         </div>
-        <div class="feature-visual reveal" data-delay="1">
-          <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1200&q=80" alt="Mobile banking app" loading="lazy" />
+        <div class="engage-sub reveal" data-delay="1">
+          <div class="engage-sub-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V8M9 17V5M15 17v-7M21 17v-4"/></svg>
+          </div>
+          <h3>Spending insights</h3>
+          <p>Weekly summaries, anomaly alerts, and category breakdowns your users actually read.</p>
+        </div>
+        <div class="engage-sub reveal" data-delay="2">
+          <div class="engage-sub-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Carbon footprint</h3>
+          <p>Per-transaction CO₂ estimates so your customers see the impact of every spend.</p>
+        </div>
+      </div>
+      <div class="engage-meta reveal">
+        <span>Drop-in components · Full white-label · RTL &amp; Arabic-first</span>
+        <div class="feature-cta-row">
+          <a href="contact.html" class="btn btn--primary">Book a 20-min walkthrough</a>
+          <a href="docs/pfm-sdk.html" class="btn btn--text">Read the SDK docs <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -140,10 +176,28 @@
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Card-linked offers with lift attribution</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No-code campaign studio for marketing teams</li>
           </ul>
-          <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+          <div class="feature-cta-row">
+            <a href="contact.html" class="btn btn--primary">See it on your data</a>
+          </div>
         </div>
         <div class="feature-visual reveal" data-delay="1">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="Marketing analytics" loading="lazy" />
+          <!-- Illustrated segment + offer flow -->
+          <div class="target-mock" aria-label="Sample segment and offer flow">
+            <div class="target-mock-segment">
+              <span class="target-mock-label">Segment</span>
+              <strong>Frequent travellers · 12,440 users</strong>
+              <span class="target-mock-sub">3+ flights in the last 90 days</span>
+            </div>
+            <div class="target-mock-arrow" aria-hidden="true">→</div>
+            <div class="target-mock-offer">
+              <span class="target-mock-label">Triggered offer</span>
+              <strong>2× points on hotel bookings</strong>
+              <div class="target-mock-stats">
+                <div><span>Take-rate</span><strong>18.4%</strong></div>
+                <div><span>Lift vs control</span><strong>+12%</strong></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -153,8 +207,8 @@
     <div class="container">
       <div class="cta-banner reveal">
         <h2>One demo. One real dataset.</h2>
-        <p>Show us your transactions and we'll show you what they're really saying.</p>
-        <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+        <p>Bring a sample of your transaction stream. We'll show you what Lune extracts from it in real time.</p>
+        <a href="contact.html" class="btn btn--primary">Book a walkthrough</a>
       </div>
     </div>
   </section>
