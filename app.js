@@ -190,6 +190,14 @@
         return;
       }
 
+      // Turnstile token must be present (widget auto-fills cf-turnstile-response)
+      const turnstileField = form.querySelector('[name="cf-turnstile-response"]');
+      const turnstileToken = turnstileField ? turnstileField.value : '';
+      if (!turnstileToken) {
+        setStatus('Please complete the bot check before sending.', 'error');
+        return;
+      }
+
       lastSubmit = now;
       const btn = form.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
@@ -197,13 +205,47 @@
       btn.textContent = 'Sending…';
       setStatus('', 'info');
 
-      // No backend wired up — simulate. Replace with `fetch('/api/contact', { ... })`
-      window.setTimeout(() => {
-        form.reset();
-        btn.disabled = false;
-        btn.textContent = originalText;
-        setStatus('Thanks — we\'ll be in touch within one business day.', 'success');
-      }, 900);
+      const payload = {
+        firstName: $('#firstName', form)?.value || '',
+        lastName: $('#lastName', form)?.value || '',
+        email: email?.value || '',
+        company: $('#company', form)?.value || '',
+        message: message?.value || '',
+        website: honeypot ? honeypot.value : '',
+        turnstileToken,
+      };
+
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(async (res) => {
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.success) {
+            form.reset();
+            // Reset Turnstile widget so the user can submit again if they want
+            if (window.turnstile && typeof window.turnstile.reset === 'function') {
+              try { window.turnstile.reset(); } catch (_) { /* ignore */ }
+            }
+            setStatus('Thanks — your message is on its way. We\'ll be in touch within one business day.', 'success');
+          } else {
+            setStatus(data.error || 'Something went wrong. Please try again in a moment.', 'error');
+            if (window.turnstile && typeof window.turnstile.reset === 'function') {
+              try { window.turnstile.reset(); } catch (_) { /* ignore */ }
+            }
+          }
+        })
+        .catch(() => {
+          setStatus('Network error. Please check your connection and try again.', 'error');
+          if (window.turnstile && typeof window.turnstile.reset === 'function') {
+            try { window.turnstile.reset(); } catch (_) { /* ignore */ }
+          }
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        });
     });
 
     $$('input, select, textarea', form).forEach((field) => {

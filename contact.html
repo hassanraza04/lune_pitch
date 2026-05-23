@@ -6,7 +6,7 @@
   <title>Contact | Lune</title>
   <meta name="description" content="Talk to Lune. Schedule a demo, ask a question, or visit us in DIFC, Dubai." />
 
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="dark" />
@@ -21,6 +21,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Cloudflare Turnstile (bot protection on the contact form) -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -115,6 +118,10 @@
           <div class="form-field">
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Tell us a bit about what you're working on…" required maxlength="2000"></textarea>
+          </div>
+
+          <div class="form-field form-field--turnstile">
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADU96M4B7Y8-3f_w" data-theme="dark"></div>
           </div>
 
           <button type="submit" class="btn btn--primary btn--block">
