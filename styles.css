@@ -18,7 +18,8 @@
 
   --text:         #F2F7F5;
   --text-muted:   #8FA39C;
-  --text-dim:     #5C6F69;
+  /* --text-dim lightened from #5C6F69 (~3.4:1) to hit WCAG AA 4.5:1 on --bg */
+  --text-dim:     #7A8E88;
 
   --danger:       #E07B6F;
 
@@ -58,6 +59,52 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ============================================
+   Global focus-visible — keyboard accessibility
+   Applies to every interactive element. Hidden from mouse users via
+   :focus-visible so it only appears for keyboard / a11y nav.
+   ============================================ */
+
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--mint-bright);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.btn:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ============================================
+   Skip-to-content link — appears on first Tab press
+   ============================================ */
+
+.skip-to-content {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 9999;
+  background: var(--mint);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--t-fast) var(--ease);
+}
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--bg);
+  outline-offset: 2px;
+}
+
+/* Make sure scroll-to-anchor accounts for fixed nav */
+:target { scroll-margin-top: calc(var(--nav-height) + 24px); }
+#main-content { scroll-margin-top: 0; }
 
 body {
   margin: 0;
@@ -191,7 +238,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 
 .btn--link {
   color: var(--mint);
-  padding: 0.25rem 0;
+  /* Guarantee 44px tap height per WCAG 2.5.5 / Apple HIG */
+  padding: 0.65rem 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .btn--link:hover { color: var(--mint-bright); }
 .btn--link .arrow { transition: transform var(--t-fast) var(--ease); }
@@ -202,6 +253,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   background: transparent;
   color: var(--text);
   padding: 0.85rem 0.5rem;
+  min-height: 44px;
   border: none;
 }
 .btn--text:hover { color: var(--mint); }
@@ -283,16 +335,20 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   margin: 0; padding: 0;
 }
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
   font-size: 0.92rem;
   color: var(--text-muted);
   transition: color var(--t-fast) var(--ease);
   position: relative;
+  padding: 12px 4px; /* 44px+ hit area incl line-height */
+  min-height: 44px;
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
 .nav-links a[aria-current="page"]::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: -8px;
+  left: 4px; right: 4px; bottom: 4px;
   height: 2px;
   background: var(--mint);
   border-radius: 2px;
@@ -418,7 +474,14 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   background-clip: text;
   color: transparent;
   margin-bottom: 12px;
-  font-feature-settings: "tnum";
+  /* Tabular figures stop the digit-width from shifting as counter ticks up. */
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.stat-big .counter {
+  display: inline-block;
+  min-width: 2ch;
+  text-align: right;
 }
 .stat-big-label {
   font-size: 0.82rem;
@@ -1728,6 +1791,27 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   min-height: 1.4em;
 }
 
+/* Per-field inline error message — sits below the input */
+.form-field-error {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: var(--danger);
+  line-height: 1.4;
+}
+
+/* Required indicator on form labels */
+.form-field label .req,
+.form-required-hint .req {
+  color: var(--danger);
+  margin-left: 4px;
+  font-weight: 500;
+}
+.form-required-hint {
+  margin: 0 0 1.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
 /* ============================================
    CTA banner
    ============================================ */
@@ -2004,8 +2088,30 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .reveal[data-delay="4"] { transition-delay: 320ms; }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Reveal animations: show immediately, no transform */
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
+  /* Kill decorative continuous animations */
+  .hero-moon { animation: none; }
+  .hero-badge .dot { animation: none; }
+  /* Disable button/link micro-transforms on hover */
+  .btn--primary:hover,
+  .product-card:hover,
+  .industry-card:hover,
+  .engage-sub:hover,
+  .case-teaser:hover {
+    transform: none;
+  }
+  .btn--link:hover .arrow,
+  .btn--text:hover .arrow,
+  .case-teaser:hover .case-teaser-cta .arrow { transform: none; }
+  /* Counter animation falls back to final value (handled in app.js) */
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ============================================
@@ -2729,10 +2835,37 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .docs-breadcrumb {
   display: block;
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.docs-breadcrumb ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.docs-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+}
+.docs-breadcrumb li + li::before {
+  content: '/';
+  margin-right: 8px;
+  color: var(--text-dim);
+}
+.docs-breadcrumb a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease);
+}
+.docs-breadcrumb a:hover { color: var(--mint); }
+.docs-breadcrumb [aria-current="page"] {
   color: var(--mint);
-  margin-bottom: 10px;
+  font-weight: 500;
 }
 .docs-page-header h1 {
   font-size: clamp(1.7rem, 3vw, 2.4rem);

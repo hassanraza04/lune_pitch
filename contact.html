@@ -50,6 +50,8 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
   <header class="nav" id="nav">
     <div class="container">
       <a href="index.html" class="logo" aria-label="Lune home">
@@ -73,6 +75,8 @@
     </div>
   </header>
 
+
+  <main id="main-content">
   <section class="page-header">
     <div class="container">
       <span class="eyebrow reveal">Contact Us</span>
@@ -115,32 +119,33 @@
           </div>
         </div>
 
-        <form class="form reveal" id="contactForm" data-delay="1" novalidate autocomplete="on">
+        <form class="form reveal" id="contactForm" data-delay="1" novalidate autocomplete="on" aria-describedby="formRequiredHint">
+          <p id="formRequiredHint" class="form-required-hint"><span class="req" aria-hidden="true">*</span> Required field</p>
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
 
           <div class="form-row">
             <div class="form-field">
-              <label for="firstName">First name</label>
+              <label for="firstName">First name <span class="req" aria-hidden="true">*</span></label>
               <input type="text" id="firstName" name="firstName" required maxlength="60" autocomplete="given-name" pattern="[A-Za-zÀ-ÿ' -]{1,60}" />
             </div>
             <div class="form-field">
-              <label for="lastName">Last name</label>
+              <label for="lastName">Last name <span class="req" aria-hidden="true">*</span></label>
               <input type="text" id="lastName" name="lastName" required maxlength="60" autocomplete="family-name" pattern="[A-Za-zÀ-ÿ' -]{1,60}" />
             </div>
           </div>
 
           <div class="form-field">
-            <label for="email">Work email</label>
+            <label for="email">Work email <span class="req" aria-hidden="true">*</span></label>
             <input type="email" id="email" name="email" required maxlength="120" autocomplete="email" />
           </div>
 
           <div class="form-field">
-            <label for="company">Company</label>
+            <label for="company">Company <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="company" name="company" required maxlength="120" autocomplete="organization" />
           </div>
 
           <div class="form-field">
-            <label for="message">Message</label>
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
             <textarea id="message" name="message" placeholder="Tell us a bit about what you're working on…" required maxlength="2000"></textarea>
           </div>
 
@@ -191,6 +196,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <footer class="footer">
     <div class="container">

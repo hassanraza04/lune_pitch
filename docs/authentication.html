@@ -83,7 +83,13 @@
       </div>
 
       <header class="docs-page-header">
-        <span class="docs-breadcrumb">Getting started</span>
+        <nav class="docs-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./index.html">Docs</a></li>
+            <li aria-current="page"><span>Getting started</span></li>
+          </ol>
+        </nav>
         <h1>Authentication</h1>
         <p>Every request to the Lune API must include a bearer token. Keys are scoped per environment
           and you can have many active at once. Lost a key? Rotate it without downtime.</p>

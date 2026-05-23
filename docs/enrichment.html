@@ -83,7 +83,13 @@
       </div>
 
       <header class="docs-page-header">
-        <span class="docs-breadcrumb">Reference</span>
+        <nav class="docs-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./index.html">Docs</a></li>
+            <li aria-current="page"><span>Reference</span></li>
+          </ol>
+        </nav>
         <h1>Enrichment API</h1>
         <p>Submit a raw transaction string and receive a structured, categorized record — typically in
           under 1ms. Supports single and batch modes.</p>

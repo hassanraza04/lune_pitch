@@ -83,7 +83,13 @@
       </div>
 
       <header class="docs-page-header">
-        <span class="docs-breadcrumb">Reference</span>
+        <nav class="docs-breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="./index.html">Docs</a></li>
+            <li aria-current="page"><span>Reference</span></li>
+          </ol>
+        </nav>
         <h1>Webhooks</h1>
         <p>Receive events when transactions are enriched, when carbon thresholds are crossed, when budgets
           tip, or when subscriptions are detected. At-least-once delivery, signed payloads, retries with

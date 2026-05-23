@@ -15,6 +15,25 @@
   const navToggle = $('#navToggle');
   const navLinks = $('#navLinks');
 
+  /* ---------- Active-page marker on primary nav ---------- */
+  // Adds aria-current="page" to the nav link matching the current URL.
+  // Idempotent — won't override an aria-current already set by the markup.
+  (function markActiveNav() {
+    if (!navLinks) return;
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    const file = path.split('/').pop() || 'index.html';
+    $$('a', navLinks).forEach((a) => {
+      if (a.hasAttribute('aria-current')) return;
+      const href = (a.getAttribute('href') || '').replace(/^\.?\//, '');
+      // skip the mobile CTA button
+      if (a.classList.contains('btn')) return;
+      const isHome = (file === '' || file === 'index.html') && (href === 'index.html' || href === '');
+      const isMatch = isHome || href === file ||
+                      (href === 'docs/' && path.includes('/docs/'));
+      if (isMatch) a.setAttribute('aria-current', 'page');
+    });
+  })();
+
   const setNavState = () => {
     if (!nav) return;
     nav.classList.toggle('is-scrolled', window.scrollY > 8);
@@ -78,10 +97,19 @@
 
   /* ---------- Animated counters ---------- */
   const counters = $$('.counter');
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const animateCounter = (el) => {
     const target = parseFloat(el.dataset.target || '0');
     if (!Number.isFinite(target)) return;
     const decimals = (el.dataset.target || '').split('.')[1]?.length || 0;
+
+    // Respect user motion preference — skip the animation entirely
+    if (prefersReducedMotion) {
+      el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toLocaleString();
+      return;
+    }
+
     const duration = 1400;
     const start = performance.now();
 
@@ -148,7 +176,69 @@
       'var(--text-muted)';
   };
 
+  /* Per-field error helpers */
+  const FIELD_LABELS = {
+    firstName: 'first name',
+    lastName: 'last name',
+    email: 'work email',
+    company: 'company',
+    message: 'message',
+  };
+
+  const errorIdFor = (field) => `${field.id}-error`;
+
+  const showFieldError = (field, msg) => {
+    field.style.borderColor = 'var(--danger)';
+    field.setAttribute('aria-invalid', 'true');
+    const id = errorIdFor(field);
+    let err = document.getElementById(id);
+    if (!err) {
+      err = document.createElement('p');
+      err.id = id;
+      err.className = 'form-field-error';
+      err.setAttribute('role', 'alert');
+      field.parentNode.appendChild(err);
+      const described = (field.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (!described.includes(id)) described.push(id);
+      field.setAttribute('aria-describedby', described.join(' '));
+    }
+    err.textContent = msg;
+  };
+
+  const clearFieldError = (field) => {
+    field.style.borderColor = '';
+    field.removeAttribute('aria-invalid');
+    const err = document.getElementById(errorIdFor(field));
+    if (err) err.remove();
+  };
+
+  const validateField = (field) => {
+    const name = field.name || field.id;
+    const val = (field.value || '').trim();
+    const label = FIELD_LABELS[name] || name || 'this field';
+    if (field.hasAttribute('required') && !val) {
+      showFieldError(field, `Please enter your ${label}.`);
+      return false;
+    }
+    if (field.type === 'email' && val && !isValidEmail(val)) {
+      showFieldError(field, 'Enter a valid work email address.');
+      return false;
+    }
+    if (field.tagName === 'TEXTAREA' && val.length > 2000) {
+      showFieldError(field, 'Please keep your message under 2,000 characters.');
+      return false;
+    }
+    clearFieldError(field);
+    return true;
+  };
+
   if (form && status) {
+    // Inline validation on blur — show errors only after the user finishes the field
+    $$('input, textarea', form).forEach((field) => {
+      if (!field.id || field.type === 'hidden') return;
+      field.addEventListener('blur', () => { if (field.value || field.hasAttribute('required')) validateField(field); });
+    });
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -167,35 +257,21 @@
         return;
       }
 
-      // Required fields
-      const required = $$('[required]', form);
-      let valid = true;
-      required.forEach((field) => {
-        const val = (field.value || '').trim();
-        if (!val) {
-          field.style.borderColor = 'var(--danger)';
-          valid = false;
-        } else {
-          field.style.borderColor = '';
-        }
+      // Validate every field, collect first-invalid
+      const fields = $$('input, textarea', form).filter((f) => f.id && f.type !== 'hidden');
+      let firstInvalid = null;
+      fields.forEach((field) => {
+        const ok = validateField(field);
+        if (!ok && !firstInvalid) firstInvalid = field;
       });
 
-      // Email
       const email = $('#email', form);
-      if (email && !isValidEmail(email.value.trim())) {
-        email.style.borderColor = 'var(--danger)';
-        valid = false;
-      }
-
-      // Length sanity for textarea
       const message = $('#message', form);
-      if (message && message.value.length > 2000) {
-        message.style.borderColor = 'var(--danger)';
-        valid = false;
-      }
 
-      if (!valid) {
-        setStatus('Please fill in all required fields with a valid email.', 'error');
+      if (firstInvalid) {
+        setStatus('Please fix the highlighted fields and try again.', 'error');
+        // Move focus to first invalid for keyboard / screen-reader users
+        try { firstInvalid.focus({ preventScroll: false }); } catch (_) { firstInvalid.focus(); }
         return;
       }
 
@@ -257,10 +333,9 @@
         });
     });
 
+    // While the user types, clear that field's error state so it doesn't nag mid-keystroke
     $$('input, select, textarea', form).forEach((field) => {
-      field.addEventListener('input', () => {
-        field.style.borderColor = '';
-      });
+      field.addEventListener('input', () => { clearFieldError(field); });
     });
   }
 
