@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Lune</title>
+  <meta name="description" content="Notes from the Lune team on transaction intelligence, banking, and the future of finance." />
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests;" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0A1410" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Lune home">
+        <span class="logo-mark"><img src="lune_logo.png" alt="" aria-hidden="true" /></span>
+        Lune
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="docs.html">Developers</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn--primary">Schedule a Demo</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow reveal">Blog</span>
+      <h1 class="reveal" data-delay="1">Notes from <span class="gradient-text">the team.</span></h1>
+      <p class="reveal" data-delay="2">Field notes, product thinking, and writing on transaction data, AI, and modern banking.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <article class="blog-featured reveal">
+        <div class="blog-featured-image">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1600&q=80" alt="AI in banking" loading="lazy" />
+        </div>
+        <div class="blog-featured-body">
+          <div class="blog-meta">
+            <span class="blog-cat">Product</span>
+            <span>Featured</span>
+          </div>
+          <h2>Smart Nudges: How AI Can Boost Customer Engagement in Banking</h2>
+          <p>On AI-driven, personalised prompts that guide financial behaviour and reshape mobile banking.</p>
+          <a href="https://www.lunedata.io/blog/smart-nudges-how-ai-can-boost-customer-engagement-in-banking" target="_blank" rel="noopener noreferrer" class="btn btn--link">
+            Read post
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <div class="blog-grid">
+
+        <a href="https://www.lunedata.io/blog/how-ai-is-transforming-banking-in-the-uae-gcc" target="_blank" rel="noopener noreferrer" class="blog-card reveal">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="GCC banking skyline" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Industry</span></div>
+            <h3>How AI Is Transforming Banking in the UAE &amp; GCC</h3>
+            <p>AI at the heart of regional banking transformation.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/the-power-of-transaction-enrichment-beyond-numbers" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="1">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="Data dashboard" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Product</span></div>
+            <h3>The Power of Transaction Enrichment: Beyond Numbers</h3>
+            <p>Why enriched transactions make banking data feel helpful instead of robotic.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/meet-the-future-of-banking-the-lune-ai-financial-assistant" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="2">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?auto=format&fit=crop&w=1200&q=80" alt="Mobile banking app" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Product</span></div>
+            <h3>Meet the Future of Banking: The Lune AI Financial Assistant</h3>
+            <p>An AI assistant that answers financial questions instantly, grounded in verified data.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/powering-the-nations-ambition-lune-x-commercial-bank-of-dubai" target="_blank" rel="noopener noreferrer" class="blog-card reveal">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80" alt="Bank partnership" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Partnership</span></div>
+            <h3>Powering the Nation's Ambition: Lune x Commercial Bank of Dubai</h3>
+            <p>A partnership to enhance personal banking through smarter financial insights.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/top-5-mobile-banking-app-features-that-consumers-look-for-in-2024" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="1">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82?auto=format&fit=crop&w=1200&q=80" alt="Mobile banking" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Industry</span></div>
+            <h3>Top 5 Mobile Banking App Features Consumers Look for in 2024</h3>
+            <p>What today's customers expect from a modern mobile banking app.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/lune-secures-1-5-million-seed-funding" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="2">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1664575602807-e002fc20232b?auto=format&fit=crop&w=1200&q=80" alt="Company growth" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Company</span></div>
+            <h3>Lune Secures $1.5 Million Seed Funding</h3>
+            <p>A new chapter in redefining financial data analytics.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/lune-attains-iso-27001-certification" target="_blank" rel="noopener noreferrer" class="blog-card reveal">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80" alt="Security certification" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Company</span></div>
+            <h3>Lune Attains ISO 27001 Certification</h3>
+            <p>A formal milestone in our long-running investment in security and trust.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/lune-and-gfp-uniting-for-transaction-carbon-footprint-transparency" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="1">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1623509057939-9e09c44a40b6?auto=format&fit=crop&w=1200&q=80" alt="Sustainability" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Sustainability</span></div>
+            <h3>Lune and GFP: Uniting for Transaction Carbon Footprint Transparency</h3>
+            <p>Bringing transparency to the environmental impact of everyday financial decisions.</p>
+          </div>
+        </a>
+
+        <a href="https://www.lunedata.io/blog/lune-partners-with-simplifi" target="_blank" rel="noopener noreferrer" class="blog-card reveal" data-delay="2">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80" alt="Partnership" loading="lazy" />
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta"><span class="blog-cat">Partnership</span></div>
+            <h3>Lune Partners with SimpliFi</h3>
+            <p>A strategic partnership with a Cards-as-a-Service platform in MENA.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>The full archive lives on lunedata.io.</h2>
+        <p>30+ more posts on transaction intelligence, banking, and the future of finance.</p>
+        <a href="https://www.lunedata.io/blog" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+          See the full blog
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-mark"><img src="lune_logo.png" alt="" aria-hidden="true" /></span>
+            Lune
+          </a>
+          <p>Real-time transaction intelligence for the world's leading financial institutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="products.html#enrich">Enrich</a></li>
+            <li><a href="products.html#engage">Engage</a></li>
+            <li><a href="products.html#target">Target</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="industries.html#retail">Retail Banks</a></li>
+            <li><a href="industries.html#neobanks">Neo-Banks &amp; Wallets</a></li>
+            <li><a href="industries.html#fintechs">Fintechs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Developers</h4>
+          <ul>
+            <li><a href="docs.html">Introduction</a></li>
+            <li><a href="docs.html#enrichment">Data Enrichment</a></li>
+            <li><a href="docs.html#pfm">PFM SDK</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-pitch-note"><span><a href="pitch.html">Design concept by Hassan</a>, an independent redesign pitch. Not affiliated with Lune Data.</span></div>
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Lune Data. <a href="https://www.bing.com/maps?where=DIFC%2C%20Dubai%2C%20AE" target="_blank" rel="noopener noreferrer" class="footer-address">156 Gate Avenue, DIFC, Dubai, UAE</a>.</span>
+          <span class="footer-legal-links">
+            <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html">Cookie Policy</a>
+          </span>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/lunetechnologies/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.22 8h4.56v14H.22V8Zm7.46 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.55v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.72-2.54 3.49V22H7.68V8Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
