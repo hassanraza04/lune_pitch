@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enrichment API | Lune Docs</title>
+  <meta name="description" content="Reference for the Lune Enrich endpoint — request shape, response fields, and category taxonomy." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://lunepitch.pages.dev/docs/enrichment.html" />
+  <meta property="og:title" content="Enrichment API | Lune Docs" />
+  <meta property="og:description" content="Reference for the Lune Enrich endpoint — request shape, response fields, and category taxonomy." />
+  <meta property="og:url" content="https://lunepitch.pages.dev/docs/enrichment.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lune" />
+  <meta property="og:image" content="https://lunepitch.pages.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Enrichment API | Lune Docs" />
+  <meta name="twitter:description" content="Reference for the Lune Enrich endpoint." />
+  <meta name="twitter:image" content="https://lunepitch.pages.dev/og-image.png" />
+
+  <script type="text/plain" data-consent="analytics" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "be4a6d29d2674ab3adb92e1833fd17bd"}'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="container">
+      <a href="../index.html" class="logo" aria-label="Lune home">
+        <span class="logo-mark"><img src="../lune_logo.png" alt="" aria-hidden="true" /></span>
+        Lune
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../products.html">Products</a></li>
+          <li><a href="../industries.html">Industries</a></li>
+          <li><a href="../case-studies.html">Case Studies</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="index.html" aria-current="page">Developers</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="../contact.html" class="btn btn--primary">Schedule a Demo</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="docs-shell">
+    <aside class="docs-sidebar" aria-label="Documentation navigation">
+      <div class="docs-nav-section">
+        <span class="docs-nav-heading">Getting started</span>
+        <ul>
+          <li><a href="index.html">Introduction</a></li>
+          <li><a href="authentication.html">Authentication</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-section">
+        <span class="docs-nav-heading">Reference</span>
+        <ul>
+          <li><a href="enrichment.html" aria-current="page">Enrichment API</a></li>
+          <li><a href="pfm-sdk.html">PFM SDK (Engage)</a></li>
+          <li><a href="webhooks.html">Webhooks</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="docs-back">← Back to site</a>
+    </aside>
+
+    <article class="docs-content">
+      <div class="docs-banner">
+        <strong>Reference layout demo.</strong> Full live docs are published at
+        <a href="https://docs.lunedata.io" target="_blank" rel="noopener noreferrer">docs.lunedata.io</a>.
+      </div>
+
+      <header class="docs-page-header">
+        <span class="docs-breadcrumb">Reference</span>
+        <h1>Enrichment API</h1>
+        <p>Submit a raw transaction string and receive a structured, categorized record — typically in
+          under 1ms. Supports single and batch modes.</p>
+      </header>
+
+      <h2 id="endpoint">Endpoint</h2>
+      <pre class="code-block"><code><span class="tok-key">POST</span> /v1/enrich</code></pre>
+
+      <h2 id="request">Request body</h2>
+      <table>
+        <thead>
+          <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>description</code></td><td>string</td><td>yes</td><td>Raw transaction descriptor as it appears on the statement. Max 256 chars.</td></tr>
+          <tr><td><code>amount</code></td><td>number</td><td>yes</td><td>Transaction amount in the original currency. Signed: negative for refunds.</td></tr>
+          <tr><td><code>currency</code></td><td>string</td><td>yes</td><td>ISO 4217 three-letter currency code, uppercase.</td></tr>
+          <tr><td><code>timestamp</code></td><td>string</td><td>no</td><td>ISO-8601 timestamp. Improves recurring detection accuracy.</td></tr>
+          <tr><td><code>account_id</code></td><td>string</td><td>no</td><td>Stable account identifier; enables cross-transaction patterns.</td></tr>
+          <tr><td><code>country</code></td><td>string</td><td>no</td><td>ISO 3166 country hint for the merchant graph lookup.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="example">Example</h2>
+      <div class="code-tabs">
+        <div class="code-tabs-buttons" role="tablist">
+          <button role="tab" data-lang="curl" aria-selected="true">cURL</button>
+          <button role="tab" data-lang="python" aria-selected="false">Python</button>
+          <button role="tab" data-lang="node" aria-selected="false">Node.js</button>
+          <button role="tab" data-lang="go" aria-selected="false">Go</button>
+        </div>
+        <pre class="code-tabs-panel" data-lang="curl" data-active="true"><code>curl https://api.lunedata.io/v1/enrich \
+  -H <span class="tok-str">"Authorization: Bearer lune_sk_live_..."</span> \
+  -H <span class="tok-str">"Content-Type: application/json"</span> \
+  -d <span class="tok-str">'{
+    "description": "AMZN MKTP US*A1B2C3 AMZN.COM/BILL",
+    "amount": <span class="tok-num">42.99</span>,
+    "currency": "USD",
+    "timestamp": "2026-05-23T10:14:00Z",
+    "country": "US"
+  }'</span></code></pre>
+        <pre class="code-tabs-panel" data-lang="python" data-active="false"><code>result = lune.enrich(
+    description=<span class="tok-str">"AMZN MKTP US*A1B2C3 AMZN.COM/BILL"</span>,
+    amount=<span class="tok-num">42.99</span>,
+    currency=<span class="tok-str">"USD"</span>,
+    timestamp=<span class="tok-str">"2026-05-23T10:14:00Z"</span>,
+    country=<span class="tok-str">"US"</span>,
+)
+print(result.merchant.name, result.category)</code></pre>
+        <pre class="code-tabs-panel" data-lang="node" data-active="false"><code><span class="tok-key">const</span> result = <span class="tok-key">await</span> lune.enrich({
+  description: <span class="tok-str">'AMZN MKTP US*A1B2C3 AMZN.COM/BILL'</span>,
+  amount: <span class="tok-num">42.99</span>,
+  currency: <span class="tok-str">'USD'</span>,
+  timestamp: <span class="tok-str">'2026-05-23T10:14:00Z'</span>,
+  country: <span class="tok-str">'US'</span>,
+});
+console.log(result.merchant.name, result.category);</code></pre>
+        <pre class="code-tabs-panel" data-lang="go" data-active="false"><code>result, err := lune.Enrich(ctx, &amp;lune.EnrichRequest{
+    Description: <span class="tok-str">"AMZN MKTP US*A1B2C3 AMZN.COM/BILL"</span>,
+    Amount:      <span class="tok-num">42.99</span>,
+    Currency:    <span class="tok-str">"USD"</span>,
+    Timestamp:   <span class="tok-str">"2026-05-23T10:14:00Z"</span>,
+    Country:     <span class="tok-str">"US"</span>,
+})
+<span class="tok-key">if</span> err != <span class="tok-key">nil</span> { <span class="tok-key">return</span> err }
+fmt.Println(result.Merchant.Name, result.Category)</code></pre>
+      </div>
+
+      <h2 id="response">Response fields</h2>
+      <pre class="code-block"><code>{
+  <span class="tok-key">"merchant"</span>: {
+    <span class="tok-key">"id"</span>: <span class="tok-str">"mer_amzn_us"</span>,
+    <span class="tok-key">"name"</span>: <span class="tok-str">"Amazon"</span>,
+    <span class="tok-key">"logo"</span>: <span class="tok-str">"https://cdn.lunedata.io/m/amazon.svg"</span>,
+    <span class="tok-key">"location"</span>: <span class="tok-key">null</span>,
+    <span class="tok-key">"website"</span>: <span class="tok-str">"https://amazon.com"</span>
+  },
+  <span class="tok-key">"category"</span>: <span class="tok-str">"shopping.marketplace"</span>,
+  <span class="tok-key">"category_path"</span>: [<span class="tok-str">"shopping"</span>, <span class="tok-str">"marketplace"</span>],
+  <span class="tok-key">"carbon_g"</span>: <span class="tok-num">312</span>,
+  <span class="tok-key">"recurring"</span>: {
+    <span class="tok-key">"is_recurring"</span>: <span class="tok-num">false</span>,
+    <span class="tok-key">"confidence"</span>: <span class="tok-num">0.04</span>
+  },
+  <span class="tok-key">"confidence"</span>: <span class="tok-num">0.98</span>,
+  <span class="tok-key">"latency_ms"</span>: <span class="tok-num">0.4</span>
+}</code></pre>
+
+      <h2 id="categories">Category taxonomy</h2>
+      <p>The taxonomy has three levels: <code>group.category.subcategory</code>. Returned codes are always
+        in dot notation. Full mapping is available via <code>GET /v1/enrich/categories</code>. Top-level groups:</p>
+      <ul>
+        <li><code>food</code> — restaurants, coffee, groceries, delivery, alcohol.</li>
+        <li><code>shopping</code> — marketplaces, clothing, electronics, home, books.</li>
+        <li><code>transport</code> — fuel, ride-share, public transit, flights, parking.</li>
+        <li><code>bills</code> — utilities, telecom, rent, mortgage, insurance.</li>
+        <li><code>entertainment</code> — streaming, gaming, events, fitness.</li>
+        <li><code>finance</code> — transfers, ATM, fees, interest.</li>
+        <li><code>income</code> — salary, refunds, dividends, gifts.</li>
+      </ul>
+
+      <h2 id="errors">Errors</h2>
+      <table>
+        <thead>
+          <tr><th>Status</th><th>Body</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>400</code></td><td><code>invalid_field</code></td><td>One or more fields failed validation. Body includes which.</td></tr>
+          <tr><td><code>413</code></td><td><code>description_too_long</code></td><td>Description exceeded 256 characters.</td></tr>
+          <tr><td><code>422</code></td><td><code>unknown_currency</code></td><td>Currency code isn't a recognized ISO 4217 value.</td></tr>
+          <tr><td><code>429</code></td><td><code>rate_limited</code></td><td>You exceeded your per-second quota. Retry-After header included.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="docs-next">
+        <a href="authentication.html">
+          <span>Previous</span>
+          <strong>← Authentication</strong>
+        </a>
+        <a href="pfm-sdk.html">
+          <span>Next</span>
+          <strong>PFM SDK (Engage) →</strong>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-mark"><img src="../lune_logo.png" alt="" aria-hidden="true" /></span>
+            Lune
+          </a>
+          <p>Real-time transaction intelligence for the world's leading financial institutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../products.html#enrich">Enrich</a></li>
+            <li><a href="../products.html#engage">Engage</a></li>
+            <li><a href="../products.html#target">Target</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="../industries.html#retail">Retail Banks</a></li>
+            <li><a href="../industries.html#neobanks">Neo-Banks &amp; Wallets</a></li>
+            <li><a href="../industries.html#fintechs">Fintechs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Developers</h4>
+          <ul>
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="enrichment.html">Data Enrichment</a></li>
+            <li><a href="pfm-sdk.html">PFM SDK</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../careers.html">Careers</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-pitch-note"><span><a href="../pitch.html">Design concept by Hassan</a>, an independent redesign pitch. Not affiliated with Lune Data.</span></div>
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Lune Data. <a href="https://www.bing.com/maps?where=DIFC%2C%20Dubai%2C%20AE" target="_blank" rel="noopener noreferrer" class="footer-address">156 Gate Avenue, DIFC, Dubai, UAE</a>.</span>
+          <span class="footer-legal-links">
+            <a href="../privacy.html">Privacy Policy</a> · <a href="../terms.html">Terms</a> · <a href="../cookies.html">Cookie Policy</a> · <a href="#" data-consent-toggle>Cookie preferences</a>
+          </span>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/lunetechnologies/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.22 8h4.56v14H.22V8Zm7.46 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.55v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.72-2.54 3.49V22H7.68V8Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../consent.js" defer></script>
+  <script src="../app.js" defer></script>
+</body>
+</html>

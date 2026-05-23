@@ -1,2 +1,5 @@
+# Old docs path → new docs folder
+/docs.html  /docs/  301
+
 # Catch-all 404 — must be last
 /*  /404.html  404

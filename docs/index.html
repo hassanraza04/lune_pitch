@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation | Lune</title>
+  <meta name="description" content="Developer documentation for the Lune transaction intelligence platform." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://lunepitch.pages.dev/docs/" />
+  <meta property="og:title" content="Documentation | Lune" />
+  <meta property="og:description" content="Developer documentation for the Lune transaction intelligence platform." />
+  <meta property="og:url" content="https://lunepitch.pages.dev/docs/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lune" />
+  <meta property="og:image" content="https://lunepitch.pages.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Documentation | Lune" />
+  <meta name="twitter:description" content="Developer documentation for the Lune transaction intelligence platform." />
+  <meta name="twitter:image" content="https://lunepitch.pages.dev/og-image.png" />
+
+  <!-- Cloudflare Web Analytics (loads only after user opts in via cookie banner) -->
+  <script type="text/plain" data-consent="analytics" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "be4a6d29d2674ab3adb92e1833fd17bd"}'></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="container">
+      <a href="../index.html" class="logo" aria-label="Lune home">
+        <span class="logo-mark"><img src="../lune_logo.png" alt="" aria-hidden="true" /></span>
+        Lune
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="../products.html">Products</a></li>
+          <li><a href="../industries.html">Industries</a></li>
+          <li><a href="../case-studies.html">Case Studies</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="index.html" aria-current="page">Developers</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="../contact.html" class="btn btn--primary">Schedule a Demo</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="docs-shell">
+    <aside class="docs-sidebar" aria-label="Documentation navigation">
+      <div class="docs-nav-section">
+        <span class="docs-nav-heading">Getting started</span>
+        <ul>
+          <li><a href="index.html" aria-current="page">Introduction</a></li>
+          <li><a href="authentication.html">Authentication</a></li>
+        </ul>
+      </div>
+      <div class="docs-nav-section">
+        <span class="docs-nav-heading">Reference</span>
+        <ul>
+          <li><a href="enrichment.html">Enrichment API</a></li>
+          <li><a href="pfm-sdk.html">PFM SDK (Engage)</a></li>
+          <li><a href="webhooks.html">Webhooks</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="docs-back">← Back to site</a>
+    </aside>
+
+    <article class="docs-content">
+      <div class="docs-banner">
+        <strong>Reference layout demo.</strong> Full live docs are published at
+        <a href="https://docs.lunedata.io" target="_blank" rel="noopener noreferrer">docs.lunedata.io</a>.
+        Code samples here are illustrative.
+      </div>
+
+      <header class="docs-page-header">
+        <span class="docs-breadcrumb">Getting started</span>
+        <h1>Introduction</h1>
+        <p>Lune turns raw transaction strings into structured, contextual data your customers can actually feel.
+          This guide walks through the architecture and the fastest path to your first enriched transaction.</p>
+      </header>
+
+      <h2 id="overview">Platform overview</h2>
+      <p>Lune sits between your transaction stream and your customer experience layer. Three modules expose the platform:</p>
+      <ul>
+        <li><strong>Enrich</strong> — real-time categorization, merchant identification, geolocation, and carbon footprint.</li>
+        <li><strong>Engage</strong> — drop-in PFM components for your mobile and web apps.</li>
+        <li><strong>Target</strong> — behavior-based segmentation and card-linked offer routing.</li>
+      </ul>
+      <p>Each module is independently usable. Most customers start with <code>Enrich</code> and add the others over time.</p>
+
+      <h2 id="quickstart">Quick start</h2>
+      <p>Authenticate with a sandbox key and POST one transaction to the <code>/v1/enrich</code> endpoint:</p>
+
+      <div class="code-tabs">
+        <div class="code-tabs-buttons" role="tablist">
+          <button role="tab" data-lang="curl" aria-selected="true">cURL</button>
+          <button role="tab" data-lang="python" aria-selected="false">Python</button>
+          <button role="tab" data-lang="node" aria-selected="false">Node.js</button>
+          <button role="tab" data-lang="go" aria-selected="false">Go</button>
+        </div>
+        <pre class="code-tabs-panel" data-lang="curl" data-active="true"><code><span class="tok-com"># Replace lune_sk_test_... with your sandbox key</span>
+curl https://api.lunedata.io/v1/enrich \
+  -H <span class="tok-str">"Authorization: Bearer lune_sk_test_..."</span> \
+  -H <span class="tok-str">"Content-Type: application/json"</span> \
+  -d <span class="tok-str">'{
+    "description": "STARBUCKS #4521 DUBAI MALL",
+    "amount": <span class="tok-num">26.50</span>,
+    "currency": "AED"
+  }'</span></code></pre>
+        <pre class="code-tabs-panel" data-lang="python" data-active="false"><code><span class="tok-key">import</span> requests
+
+response = requests.post(
+    <span class="tok-str">"https://api.lunedata.io/v1/enrich"</span>,
+    headers={<span class="tok-str">"Authorization"</span>: <span class="tok-str">f"Bearer {LUNE_KEY}"</span>},
+    json={
+        <span class="tok-str">"description"</span>: <span class="tok-str">"STARBUCKS #4521 DUBAI MALL"</span>,
+        <span class="tok-str">"amount"</span>: <span class="tok-num">26.50</span>,
+        <span class="tok-str">"currency"</span>: <span class="tok-str">"AED"</span>,
+    },
+)
+print(response.json())</code></pre>
+        <pre class="code-tabs-panel" data-lang="node" data-active="false"><code><span class="tok-key">const</span> res = <span class="tok-key">await</span> fetch(<span class="tok-str">'https://api.lunedata.io/v1/enrich'</span>, {
+  method: <span class="tok-str">'POST'</span>,
+  headers: {
+    <span class="tok-str">'Authorization'</span>: <span class="tok-str">`Bearer ${process.env.LUNE_KEY}`</span>,
+    <span class="tok-str">'Content-Type'</span>: <span class="tok-str">'application/json'</span>,
+  },
+  body: JSON.stringify({
+    description: <span class="tok-str">'STARBUCKS #4521 DUBAI MALL'</span>,
+    amount: <span class="tok-num">26.50</span>,
+    currency: <span class="tok-str">'AED'</span>,
+  }),
+});
+<span class="tok-key">const</span> data = <span class="tok-key">await</span> res.json();</code></pre>
+        <pre class="code-tabs-panel" data-lang="go" data-active="false"><code>body, _ := json.Marshal(map[string]<span class="tok-key">interface</span>{}{
+    <span class="tok-str">"description"</span>: <span class="tok-str">"STARBUCKS #4521 DUBAI MALL"</span>,
+    <span class="tok-str">"amount"</span>:      <span class="tok-num">26.50</span>,
+    <span class="tok-str">"currency"</span>:    <span class="tok-str">"AED"</span>,
+})
+req, _ := http.NewRequest(<span class="tok-str">"POST"</span>,
+    <span class="tok-str">"https://api.lunedata.io/v1/enrich"</span>, bytes.NewReader(body))
+req.Header.Set(<span class="tok-str">"Authorization"</span>, <span class="tok-str">"Bearer "</span>+os.Getenv(<span class="tok-str">"LUNE_KEY"</span>))
+req.Header.Set(<span class="tok-str">"Content-Type"</span>, <span class="tok-str">"application/json"</span>)
+res, _ := http.DefaultClient.Do(req)</code></pre>
+      </div>
+
+      <p>You'll receive a structured response in well under 1ms (typical p99: 0.5ms):</p>
+      <pre class="code-block"><code>{
+  <span class="tok-key">"merchant"</span>: {
+    <span class="tok-key">"name"</span>: <span class="tok-str">"Starbucks"</span>,
+    <span class="tok-key">"logo"</span>: <span class="tok-str">"https://cdn.lunedata.io/m/starbucks.svg"</span>,
+    <span class="tok-key">"location"</span>: <span class="tok-str">"Dubai Mall"</span>
+  },
+  <span class="tok-key">"category"</span>: <span class="tok-str">"food.coffee"</span>,
+  <span class="tok-key">"carbon_g"</span>: <span class="tok-num">38</span>,
+  <span class="tok-key">"recurring"</span>: <span class="tok-num">false</span>
+}</code></pre>
+
+      <h2 id="environments">Environments</h2>
+      <p>Two environments share the same API surface. Sandbox traffic does not affect billing or production analytics.</p>
+      <table>
+        <thead>
+          <tr><th>Environment</th><th>Base URL</th><th>Key prefix</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sandbox</td><td><code>https://api.lunedata.io/v1</code></td><td><code>lune_sk_test_</code></td></tr>
+          <tr><td>Production</td><td><code>https://api.lunedata.io/v1</code></td><td><code>lune_sk_live_</code></td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="rate-limits">Rate limits</h2>
+      <p>Sandbox: 60 requests/second per key. Production limits are negotiated per contract and typically sit at 5,000 req/s sustained.
+        Every response includes <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code> headers.</p>
+
+      <div class="docs-next">
+        <a href="authentication.html">
+          <span>Next</span>
+          <strong>Authentication →</strong>
+        </a>
+        <a href="enrichment.html">
+          <span>Reference</span>
+          <strong>Enrichment API →</strong>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-mark"><img src="../lune_logo.png" alt="" aria-hidden="true" /></span>
+            Lune
+          </a>
+          <p>Real-time transaction intelligence for the world's leading financial institutions.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="../products.html#enrich">Enrich</a></li>
+            <li><a href="../products.html#engage">Engage</a></li>
+            <li><a href="../products.html#target">Target</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Industries</h4>
+          <ul>
+            <li><a href="../industries.html#retail">Retail Banks</a></li>
+            <li><a href="../industries.html#neobanks">Neo-Banks &amp; Wallets</a></li>
+            <li><a href="../industries.html#fintechs">Fintechs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Developers</h4>
+          <ul>
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="enrichment.html">Data Enrichment</a></li>
+            <li><a href="pfm-sdk.html">PFM SDK</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../careers.html">Careers</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-pitch-note"><span><a href="../pitch.html">Design concept by Hassan</a>, an independent redesign pitch. Not affiliated with Lune Data.</span></div>
+      <div class="footer-bottom">
+        <div>
+          <span>© 2026 Lune Data. <a href="https://www.bing.com/maps?where=DIFC%2C%20Dubai%2C%20AE" target="_blank" rel="noopener noreferrer" class="footer-address">156 Gate Avenue, DIFC, Dubai, UAE</a>.</span>
+          <span class="footer-legal-links">
+            <a href="../privacy.html">Privacy Policy</a> · <a href="../terms.html">Terms</a> · <a href="../cookies.html">Cookie Policy</a> · <a href="#" data-consent-toggle>Cookie preferences</a>
+          </span>
+        </div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/company/lunetechnologies/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.22 8h4.56v14H.22V8Zm7.46 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.55v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.54 1.72-2.54 3.49V22H7.68V8Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../consent.js" defer></script>
+  <script src="../app.js" defer></script>
+</body>
+</html>

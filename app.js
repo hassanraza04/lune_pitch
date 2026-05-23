@@ -287,6 +287,19 @@
     );
   }
 
+  /* ---------- Docs code tabs ---------- */
+  $$('.code-tabs').forEach((group) => {
+    const buttons = $$('.code-tabs-buttons button', group);
+    const panels = $$('.code-tabs-panel', group);
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lang = btn.dataset.lang;
+        buttons.forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+        panels.forEach((p) => p.setAttribute('data-active', String(p.dataset.lang === lang)));
+      });
+    });
+  });
+
   /* ---------- Smooth scroll for in-page anchors ---------- */
   $$('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
