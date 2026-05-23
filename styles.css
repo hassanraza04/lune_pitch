@@ -287,6 +287,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   border-radius: 2px;
 }
 
+/* The mobile CTA list item only renders inside the mobile drawer (≤720px). */
+.nav-mobile-cta { display: none; }
+
 .nav-cta { display: flex; align-items: center; gap: 0.75rem; }
 
 .nav-toggle {
@@ -1189,7 +1192,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .nav-links a[aria-current="page"]::after { display: none; }
 
   /* CTA button at the end of the drawer */
-  .nav-mobile-cta { margin-top: 24px; }
+  .nav-mobile-cta { display: block; margin-top: 24px; }
   .nav-mobile-cta a {
     display: block !important;
     text-align: center;
