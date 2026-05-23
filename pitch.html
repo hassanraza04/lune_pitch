@@ -51,7 +51,7 @@
   <header class="nav" id="nav">
     <div class="container">
       <a href="index.html" class="logo" aria-label="Lune home">
-        <span class="logo-mark"><img src="lune_logo.png" alt="" aria-hidden="true" /></span>
+        <span class="logo-mark"><img src="tab_logo.png" alt="" aria-hidden="true" /></span>
         Lune
       </a>
       <nav aria-label="Primary">
@@ -125,30 +125,50 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="eyebrow">What I built</span>
-        <h2>A full-site recreation, end to end.</h2>
-        <p>Twelve pages, one design system, real production-grade frontend.</p>
+        <h2>Not just a design. A working stack.</h2>
+        <p>18 pages, one design system, live deployment on Cloudflare Pages, and a real backend behind the contact form. Everything below is shipped at <a href="index.html">lunepitch.pages.dev</a> right now.</p>
       </div>
 
       <div class="products-grid products-grid--four">
         <article class="product-card product-card--compact reveal">
           <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
           <h3>Design system</h3>
-          <p>One stylesheet, custom-property tokens, sourced from your logo's palette.</p>
+          <p>One ~50 KB stylesheet, custom-property tokens sourced from your logo. Responsive grid, fluid type, dark-first.</p>
         </article>
         <article class="product-card product-card--compact reveal" data-delay="1">
-          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
-          <h3>Responsive layout</h3>
-          <p>CSS Grid + Flexbox, fluid typography with <code>clamp()</code>, mobile-first.</p>
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
+          <h3>A+ security headers</h3>
+          <p>HSTS preload, strict CSP, X-Frame-Options DENY, Permissions-Policy locked down. Verifiable on securityheaders.com.</p>
         </article>
         <article class="product-card product-card--compact reveal" data-delay="2">
-          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div>
-          <h3>Tasteful motion</h3>
-          <p>Scroll reveals, animated counters, blurred sticky nav. No flashy excess.</p>
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+          <h3>Live contact backend</h3>
+          <p>Cloudflare Pages Function. Server validation, Cloudflare Turnstile, IP rate limit, honeypot. Resend delivers to inbox.</p>
         </article>
         <article class="product-card product-card--compact reveal" data-delay="3">
-          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
-          <h3>Security by default</h3>
-          <p>Strict CSP, referrer policy, honeypot form, rate-limit, strict input validation.</p>
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M12 22a10 10 0 1 1 0-20"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Cookie consent + analytics</h3>
+          <p>Vanilla-JS banner with category toggles. Cloudflare Web Analytics beacon only loads after opt-in. No tracking by default.</p>
+        </article>
+        <article class="product-card product-card--compact reveal">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <h3>Full SEO + social previews</h3>
+          <p>Per-page canonical, Open Graph, Twitter Card, JSON-LD (Organization + WebSite + per-page schema). Sitemap, robots.txt, security.txt.</p>
+        </article>
+        <article class="product-card product-card--compact reveal" data-delay="1">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/></svg></div>
+          <h3>Developer docs site</h3>
+          <p>Sidebar nav, 5 endpoint pages, language-switching code samples (cURL / Python / Node / Go), parameter tables.</p>
+        </article>
+        <article class="product-card product-card--compact reveal" data-delay="2">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg></div>
+          <h3>Audit folder</h3>
+          <p>Documented security headers, a11y checklist, Lighthouse instructions, pen-test scope. A static-scan script ships with the repo.</p>
+        </article>
+        <article class="product-card product-card--compact reveal" data-delay="3">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <h3>Tasteful motion</h3>
+          <p>Scroll-reveal IntersectionObserver, animated stat counters, sticky blurred nav. <code>prefers-reduced-motion</code> respected.</p>
         </article>
       </div>
     </div>
@@ -165,34 +185,49 @@
 
       <div class="roadmap">
         <div class="roadmap-card reveal">
-          <div class="roadmap-phase">Phase 1 · Foundation</div>
-          <h3>CMS &amp; content pipeline</h3>
-          <p>Wire blog and case studies to a headless CMS (Sanity / Contentful). Editors update copy without code; preview branches for stakeholder review.</p>
+          <div class="roadmap-phase">Phase 1 · Content</div>
+          <h3>CMS &amp; editorial workflow</h3>
+          <p>Wire blog and case-study pages to a headless CMS (Sanity, Contentful, Hygraph). Editors update copy without code; preview branches for stakeholder review before publish.</p>
         </div>
         <div class="roadmap-card reveal" data-delay="1">
-          <div class="roadmap-phase">Phase 1 · Foundation</div>
-          <h3>Real contact + cookie banner</h3>
-          <p>Wire the contact form to a real endpoint with hCaptcha and CRM hand-off. Build the interactive Cookie Preferences widget referenced today.</p>
+          <div class="roadmap-phase">Phase 1 · Content</div>
+          <h3>Real legal &amp; cookie policy</h3>
+          <p>Replace the placeholder Privacy / Terms / Cookie copy with your counsel-reviewed text. The infrastructure (consent banner, opt-in gating, preference modal) is already in place.</p>
         </div>
         <div class="roadmap-card reveal" data-delay="2">
-          <div class="roadmap-phase">Phase 1 · Foundation</div>
+          <div class="roadmap-phase">Phase 1 · Content</div>
           <h3>Brand &amp; illustration</h3>
-          <p>Replace stock photography with custom product visualizations (UI mocks, data-flow diagrams, branded illustration of the merchant graph).</p>
+          <p>Replace Unsplash stock photography with custom product visualizations (UI mocks, data-flow diagrams, branded illustration of the merchant graph).</p>
         </div>
         <div class="roadmap-card reveal">
           <div class="roadmap-phase">Phase 2 · Conversion</div>
-          <h3>Industry-specific landing</h3>
-          <p>Dedicated pages per industry vertical, each with their own social proof, KPIs, and CTA. Drive paid traffic to focused pages.</p>
+          <h3>Industry-specific landings</h3>
+          <p>Dedicated pages per vertical (Retail Banks, Neo-Banks &amp; Wallets, Fintechs), each with their own social proof, KPIs, and CTA. Drive paid traffic to focused pages.</p>
         </div>
         <div class="roadmap-card reveal" data-delay="1">
           <div class="roadmap-phase">Phase 2 · Conversion</div>
-          <h3>Interactive product demos</h3>
-          <p>Live, in-browser playground for Enrich. Paste a transaction string, see the enriched response. Self-serve qualification.</p>
+          <h3>Interactive Enrich playground</h3>
+          <p>Live, in-browser tool: paste a transaction string, see the enriched response from a sandboxed test key. Self-serve qualification for developers.</p>
         </div>
         <div class="roadmap-card reveal" data-delay="2">
           <div class="roadmap-phase">Phase 2 · Conversion</div>
-          <h3>Localization</h3>
-          <p>Arabic-first variant of the site (RTL, native typography). Most of your customers are in MENA. The site should meet them where they are.</p>
+          <h3>Arabic / RTL variant</h3>
+          <p>Arabic-first variant of the site (full RTL layout, IBM Plex Sans Arabic). Most of your customers are in MENA — the site should meet them where they are.</p>
+        </div>
+        <div class="roadmap-card reveal">
+          <div class="roadmap-phase">Phase 3 · Scale</div>
+          <h3>Custom domain &amp; email</h3>
+          <p>Point Lune's own domain at the deploy, set up SPF / DKIM / DMARC, switch the contact form to send from a real Lune address instead of <code>onboarding@resend.dev</code>.</p>
+        </div>
+        <div class="roadmap-card reveal" data-delay="1">
+          <div class="roadmap-phase">Phase 3 · Scale</div>
+          <h3>External pen test</h3>
+          <p>External firm runs a real penetration test before any production customer onboards. Scope already documented in <a href="https://github.com/hassanraza04/lune_pitch/blob/main/audits/penetration-test-scope.md" target="_blank" rel="noopener noreferrer">audits/penetration-test-scope.md</a>.</p>
+        </div>
+        <div class="roadmap-card reveal" data-delay="2">
+          <div class="roadmap-phase">Phase 3 · Scale</div>
+          <h3>Continuous monitoring</h3>
+          <p>Error tracking (Sentry), uptime monitoring (Better Stack), Lighthouse budgets in CI, dependency scanning. The static-scan script in this repo is the start.</p>
         </div>
       </div>
     </div>
@@ -233,7 +268,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo">
-            <span class="logo-mark"><img src="lune_logo.png" alt="" aria-hidden="true" /></span>
+            <span class="logo-mark"><img src="tab_logo.png" alt="" aria-hidden="true" /></span>
             Lune
           </a>
           <p>Real-time transaction intelligence for the world's leading financial institutions.</p>
