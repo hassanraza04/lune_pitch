@@ -519,18 +519,22 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 /* Mini-preview pill row inside each product card */
 .product-preview {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  flex-wrap: nowrap;       /* never wrap - design intent is a single line */
+  gap: 5px;
   margin: 1rem 0 1.25rem;
+  min-width: 0;            /* let flex children shrink under tight widths */
+  overflow: hidden;        /* belt-and-braces — pill row clips, doesn't wrap */
 }
 .product-preview span {
-  font-size: 0.72rem;
-  padding: 0.32rem 0.6rem;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.55rem;
   border-radius: 999px;
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text-muted);
   font-family: 'SF Mono', Monaco, monospace;
+  white-space: nowrap;     /* each pill stays on one line */
+  flex-shrink: 0;          /* but the row itself drives layout, not each pill */
 }
 .product-card--enrich .product-preview span:first-child { color: #6FCFB5; border-color: rgba(111, 207, 181, 0.4); }
 .product-card--engage .product-preview span:first-child { color: #B6A6FF; border-color: rgba(182, 166, 255, 0.4); }
