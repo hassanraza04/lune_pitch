@@ -318,6 +318,310 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .nav-toggle.is-open span::after { top: 0; transform: rotate(-45deg); }
 
 /* ============================================
+   Hero — redesigned with the lunar motif
+   ============================================ */
+
+/* Decorative moon graphic positioned behind/beside the hero copy.
+   Lives inside .hero and animates a slow drift on load. */
+.hero-moon {
+  position: absolute;
+  right: -180px;
+  top: 12%;
+  width: 720px;
+  height: 720px;
+  pointer-events: none;
+  filter: drop-shadow(0 0 80px rgba(111, 207, 181, 0.18));
+  opacity: 0.85;
+  z-index: 0;
+  animation: moon-drift 14s ease-in-out infinite alternate;
+}
+.hero-moon svg { width: 100%; height: 100%; display: block; }
+@keyframes moon-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-18px, -12px, 0); }
+}
+
+/* Tiny scattered stars — pure CSS dot pattern */
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 22%, rgba(143, 224, 203, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 28% 64%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(2px 2px at 58% 18%, rgba(143, 224, 203, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 76% 76%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 88% 38%, rgba(143, 224, 203, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 44% 88%, rgba(255, 255, 255, 0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 6% 78%, rgba(143, 224, 203, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 96% 14%, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1px 1px at 36% 38%, rgba(143, 224, 203, 0.4), transparent 60%);
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, #000 30%, transparent 80%);
+}
+
+@media (max-width: 900px) {
+  .hero-moon {
+    width: 460px;
+    height: 460px;
+    right: -180px;
+    top: 8%;
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   Display stats — full-width editorial moment
+   ============================================ */
+
+.stats-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  padding: 64px 0;
+  gap: 0;
+}
+.stats-feature::before {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+}
+.stats-feature .stat-big {
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+}
+.stats-feature .stat-big + .stat-big::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: var(--border);
+}
+.stat-big-value {
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  background: linear-gradient(180deg, var(--mint-bright), var(--mint));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 12px;
+  font-feature-settings: "tnum";
+}
+.stat-big-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0;
+}
+.stat-big-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 720px) {
+  .stats-feature {
+    grid-template-columns: 1fr;
+    padding: 36px 0;
+    gap: 36px;
+  }
+  .stats-feature::before { display: none; }
+  .stats-feature .stat-big + .stat-big::before { display: none; }
+}
+
+/* ============================================
+   Product card accent variants
+   ============================================ */
+
+.product-card--enrich,
+.product-card--engage,
+.product-card--target {
+  position: relative;
+  overflow: hidden;
+}
+.product-card--enrich::after,
+.product-card--engage::after,
+.product-card--target::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent, var(--mint)) 0%, transparent 50%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+.product-card--enrich { --accent: #6FCFB5; }
+.product-card--engage { --accent: #B6A6FF; }
+.product-card--target { --accent: #F5B27E; }
+
+.product-card--enrich .product-icon { color: #6FCFB5; background: rgba(111, 207, 181, 0.12); border-color: rgba(111, 207, 181, 0.32); }
+.product-card--engage .product-icon { color: #B6A6FF; background: rgba(182, 166, 255, 0.12); border-color: rgba(182, 166, 255, 0.32); }
+.product-card--target .product-icon { color: #F5B27E; background: rgba(245, 178, 126, 0.12); border-color: rgba(245, 178, 126, 0.32); }
+
+.product-card--enrich .btn--link { color: #6FCFB5; }
+.product-card--engage .btn--link { color: #B6A6FF; }
+.product-card--target .btn--link { color: #F5B27E; }
+
+/* Mini-preview pill row inside each product card */
+.product-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1rem 0 1.25rem;
+}
+.product-preview span {
+  font-size: 0.72rem;
+  padding: 0.32rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'SF Mono', Monaco, monospace;
+}
+.product-card--enrich .product-preview span:first-child { color: #6FCFB5; border-color: rgba(111, 207, 181, 0.4); }
+.product-card--engage .product-preview span:first-child { color: #B6A6FF; border-color: rgba(182, 166, 255, 0.4); }
+.product-card--target .product-preview span:first-child { color: #F5B27E; border-color: rgba(245, 178, 126, 0.4); }
+
+/* ============================================
+   Section background variants
+   ============================================ */
+
+.section--alt {
+  background: linear-gradient(180deg, transparent 0%, var(--bg-elev-1) 8%, var(--bg-elev-1) 92%, transparent 100%);
+}
+
+.section--mesh {
+  position: relative;
+  overflow: hidden;
+}
+.section--mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 10% 30%, rgba(111, 207, 181, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 70%, rgba(143, 224, 203, 0.06), transparent 60%);
+  pointer-events: none;
+}
+.section--mesh > * { position: relative; }
+
+/* Per-module accent variants for section--mesh on the products page */
+.section--mesh.section--accent-engage::before {
+  background:
+    radial-gradient(ellipse 50% 60% at 12% 28%, rgba(182, 166, 255, 0.12), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 88% 72%, rgba(182, 166, 255, 0.06), transparent 60%);
+}
+.section--mesh.section--accent-target::before {
+  background:
+    radial-gradient(ellipse 50% 60% at 12% 28%, rgba(245, 178, 126, 0.12), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 88% 72%, rgba(245, 178, 126, 0.06), transparent 60%);
+}
+
+/* Accent eyebrows per module — color override */
+.eyebrow--engage { color: #B6A6FF; }
+.eyebrow--engage::before { background: #B6A6FF; }
+.eyebrow--target { color: #F5B27E; }
+.eyebrow--target::before { background: #F5B27E; }
+
+/* ============================================
+   Pull-quote — full-bleed editorial moment
+   ============================================ */
+
+.pull-quote {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.pull-quote::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 50% 50%, rgba(111, 207, 181, 0.10), transparent 70%);
+  pointer-events: none;
+}
+.pull-quote-mark {
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--mint);
+  opacity: 0.4;
+  font-family: Georgia, serif;
+  margin: 0 auto 1rem;
+  height: 4rem;
+}
+.pull-quote-text {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  max-width: 880px;
+  margin: 0 auto;
+  color: var(--text);
+}
+.pull-quote-attr {
+  margin-top: 2rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.pull-quote-attr strong { color: var(--text); font-weight: 500; font-size: 1rem; }
+.pull-quote-attr .placeholder-note {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* ============================================
+   Moon-phase divider between sections
+   ============================================ */
+
+.moon-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 0;
+  opacity: 0.6;
+}
+.moon-divider-phase {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--mint);
+  position: relative;
+  flex-shrink: 0;
+}
+.moon-divider-phase:nth-child(1) { box-shadow: inset 11px 0 0 var(--bg-elev-2); }
+.moon-divider-phase:nth-child(2) { box-shadow: inset 6px 0 0 var(--bg-elev-2); }
+.moon-divider-phase:nth-child(3) { box-shadow: none; }
+.moon-divider-phase:nth-child(4) { box-shadow: inset -6px 0 0 var(--bg-elev-2); }
+.moon-divider-phase:nth-child(5) { box-shadow: inset -11px 0 0 var(--bg-elev-2); }
+
+/* ============================================
    Hero
    ============================================ */
 
@@ -1356,6 +1660,29 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   background: var(--mint);
   flex-shrink: 0;
 }
+
+/* Per-card accent variants */
+.industry-card {
+  position: relative;
+  overflow: hidden;
+}
+.industry-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--mint));
+  opacity: 0;
+  transition: opacity var(--t-med) var(--ease);
+}
+.industry-card:hover::before { opacity: 1; }
+.industry-card:hover { border-color: var(--card-accent, var(--border-strong)); }
+.industry-card--retail   { --card-accent: #6FCFB5; }
+.industry-card--neobanks { --card-accent: #B6A6FF; }
+.industry-card--fintechs { --card-accent: #F5B27E; }
+.industry-card--retail   .product-icon { color: #6FCFB5; background: rgba(111, 207, 181, 0.12); border-color: rgba(111, 207, 181, 0.32); }
+.industry-card--neobanks .product-icon { color: #B6A6FF; background: rgba(182, 166, 255, 0.12); border-color: rgba(182, 166, 255, 0.32); }
+.industry-card--fintechs .product-icon { color: #F5B27E; background: rgba(245, 178, 126, 0.12); border-color: rgba(245, 178, 126, 0.32); }
 
 /* ============================================
    About page — team & milestones
