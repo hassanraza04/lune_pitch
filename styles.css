@@ -1681,7 +1681,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   background: #FFFFFF;
   display: grid;
   place-items: center;
-  padding: 18%;
+  padding: 6%;
 }
 .case-card-image--logo img {
   width: 100%; height: 100%;
