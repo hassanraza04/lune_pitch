@@ -105,7 +105,7 @@
   <span class="tok-key">"events"</span>: [<span class="tok-str">"transaction.enriched"</span>, <span class="tok-str">"budget.exceeded"</span>],
   <span class="tok-key">"description"</span>: <span class="tok-str">"Production sync"</span>
 }</code></pre>
-      <p>The response includes a <code>signing_secret</code>. Store it — you'll use it to verify every
+      <p>The response includes a <code>signing_secret</code>. Store it; you'll use it to verify every
         incoming payload.</p>
 
       <h2 id="events">Event types</h2>
@@ -136,7 +136,7 @@
 }</code></pre>
 
       <h2 id="verify">Verifying signatures</h2>
-      <p>Each request carries an <code>X-Lune-Signature</code> header — an HMAC-SHA256 of the raw body
+      <p>Each request carries an <code>X-Lune-Signature</code> header containing an HMAC-SHA256 of the raw body
         signed with your endpoint's <code>signing_secret</code>. <strong>Always verify before processing.</strong></p>
       <div class="code-tabs">
         <div class="code-tabs-buttons" role="tablist">
@@ -180,7 +180,7 @@
 
       <h2 id="best-practices">Best practices</h2>
       <ul>
-        <li>Respond with <code>200</code> as fast as possible — push processing to a queue.</li>
+        <li>Respond with <code>200</code> as fast as possible. Push processing to a queue.</li>
         <li>Always verify the signature before doing anything with the payload.</li>
         <li>Idempotency: store <code>event.id</code>; ignore duplicates (Lune may deliver twice).</li>
         <li>Use the dashboard's "Send test event" button to verify your endpoint locally with a tool like ngrok.</li>

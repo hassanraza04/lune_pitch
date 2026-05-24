@@ -159,7 +159,7 @@ Engage.init({
       <h2 id="theming">Theming</h2>
       <p>Customize colors, radius, fonts, and density via CSS custom properties (web) or a theme object
         (React Native, iOS, Android).</p>
-      <pre class="code-block"><code><span class="tok-com">/* Override design tokens — apply to a parent of &lt;Engage&gt; */</span>
+      <pre class="code-block"><code><span class="tok-com">/* Override design tokens; apply to a parent of &lt;Engage&gt; */</span>
 .engage-container {
   --engage-color-primary: #6FCFB5;
   --engage-color-bg: #0A1410;
@@ -169,13 +169,13 @@ Engage.init({
 }</code></pre>
 
       <h2 id="events">Events</h2>
-      <p>Components emit events your app can listen to — for analytics, deep-linking, or surfacing
+      <p>Components emit events your app can listen to for analytics, deep-linking, or surfacing
         Lune actions inside your own UI.</p>
       <ul>
-        <li><code>engage:transaction-tap</code> — user tapped a transaction row.</li>
-        <li><code>engage:goal-complete</code> — user completed a savings goal.</li>
-        <li><code>engage:budget-exceeded</code> — a budget threshold crossed.</li>
-        <li><code>engage:subscription-canceled</code> — user canceled via the Subscriptions component.</li>
+        <li><code>engage:transaction-tap</code> fires when a user taps a transaction row.</li>
+        <li><code>engage:goal-complete</code> fires when a user completes a savings goal.</li>
+        <li><code>engage:budget-exceeded</code> fires when a budget threshold is crossed.</li>
+        <li><code>engage:subscription-canceled</code> fires when a user cancels via the Subscriptions component.</li>
       </ul>
 
       <h2 id="rtl">RTL &amp; Arabic-first</h2>

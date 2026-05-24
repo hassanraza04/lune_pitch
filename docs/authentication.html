@@ -98,7 +98,7 @@
       <h2 id="bearer">Bearer tokens</h2>
       <p>Send your key in the <code>Authorization</code> header on every request:</p>
       <pre class="code-block"><code>Authorization: Bearer lune_sk_live_a1b2c3d4...</code></pre>
-      <p>Keys are never logged in plaintext, even by you, after creation — store them in a secrets
+      <p>Keys are never logged in plaintext, even by you, after creation. Store them in a secrets
         manager (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager, or Cloudflare Worker
         secret bindings).</p>
 
@@ -116,13 +116,13 @@
 
       <h2 id="scopes">Scopes</h2>
       <p>Each key carries one or more scopes that restrict what it can do. Set scopes at key creation;
-        you can't widen them later — create a new key instead.</p>
+        you can't widen them later. To grant broader access, create a new key.</p>
       <ul>
-        <li><code>enrich:read</code> — call the <code>/v1/enrich</code> endpoint.</li>
-        <li><code>enrich:batch</code> — submit batch enrichment jobs.</li>
-        <li><code>engage:render</code> — for publishable keys; lets the Engage widgets fetch data.</li>
-        <li><code>target:write</code> — create or modify audience segments.</li>
-        <li><code>webhooks:manage</code> — register and update webhook endpoints.</li>
+        <li><code>enrich:read</code> calls the <code>/v1/enrich</code> endpoint.</li>
+        <li><code>enrich:batch</code> submits batch enrichment jobs.</li>
+        <li><code>engage:render</code> is used by publishable keys to let the Engage widgets fetch data.</li>
+        <li><code>target:write</code> creates or modifies audience segments.</li>
+        <li><code>webhooks:manage</code> registers and updates webhook endpoints.</li>
       </ul>
 
       <h2 id="rotation">Key rotation</h2>

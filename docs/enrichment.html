@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enrichment API | Lune Docs</title>
-  <meta name="description" content="Reference for the Lune Enrich endpoint — request shape, response fields, and category taxonomy." />
+  <meta name="description" content="Reference for the Lune Enrich endpoint: request shape, response fields, and category taxonomy." />
 
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png" />
@@ -12,7 +12,7 @@
 
   <link rel="canonical" href="https://lunepitch.pages.dev/docs/enrichment.html" />
   <meta property="og:title" content="Enrichment API | Lune Docs" />
-  <meta property="og:description" content="Reference for the Lune Enrich endpoint — request shape, response fields, and category taxonomy." />
+  <meta property="og:description" content="Reference for the Lune Enrich endpoint: request shape, response fields, and category taxonomy." />
   <meta property="og:url" content="https://lunepitch.pages.dev/docs/enrichment.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Lune" />
@@ -91,7 +91,7 @@
           </ol>
         </nav>
         <h1>Enrichment API</h1>
-        <p>Submit a raw transaction string and receive a structured, categorized record — typically in
+        <p>Submit a raw transaction string and receive a structured, categorized record, typically in
           under 1ms. Supports single and batch modes.</p>
       </header>
 
@@ -182,13 +182,13 @@ fmt.Println(result.Merchant.Name, result.Category)</code></pre>
       <p>The taxonomy has three levels: <code>group.category.subcategory</code>. Returned codes are always
         in dot notation. Full mapping is available via <code>GET /v1/enrich/categories</code>. Top-level groups:</p>
       <ul>
-        <li><code>food</code> — restaurants, coffee, groceries, delivery, alcohol.</li>
-        <li><code>shopping</code> — marketplaces, clothing, electronics, home, books.</li>
-        <li><code>transport</code> — fuel, ride-share, public transit, flights, parking.</li>
-        <li><code>bills</code> — utilities, telecom, rent, mortgage, insurance.</li>
-        <li><code>entertainment</code> — streaming, gaming, events, fitness.</li>
-        <li><code>finance</code> — transfers, ATM, fees, interest.</li>
-        <li><code>income</code> — salary, refunds, dividends, gifts.</li>
+        <li><code>food</code>: restaurants, coffee, groceries, delivery, alcohol.</li>
+        <li><code>shopping</code>: marketplaces, clothing, electronics, home, books.</li>
+        <li><code>transport</code>: fuel, ride-share, public transit, flights, parking.</li>
+        <li><code>bills</code>: utilities, telecom, rent, mortgage, insurance.</li>
+        <li><code>entertainment</code>: streaming, gaming, events, fitness.</li>
+        <li><code>finance</code>: transfers, ATM, fees, interest.</li>
+        <li><code>income</code>: salary, refunds, dividends, gifts.</li>
       </ul>
 
       <h2 id="errors">Errors</h2>
