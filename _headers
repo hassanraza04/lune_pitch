@@ -11,25 +11,23 @@
   X-XSS-Protection: 0
   X-DNS-Prefetch-Control: on
 
-# Long cache for immutable-ish assets (logo, favicons)
-/favicon.svg
-  Cache-Control: public, max-age=604800
-
+# Long cache for favicons + brand marks (rarely change)
 /favicon-*.png
   Cache-Control: public, max-age=604800
 
 /apple-touch-icon.png
   Cache-Control: public, max-age=604800
 
-/lune_logo.png
+# Long cache for static assets - CSS, JS, images
+/assets/images/*
   Cache-Control: public, max-age=604800
 
-# Short cache for HTML/CSS/JS (so updates land fast during the pitch)
+/assets/css/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Short cache for HTML so content updates land fast
 /*.html
-  Cache-Control: public, max-age=300, must-revalidate
-
-/styles.css
-  Cache-Control: public, max-age=300, must-revalidate
-
-/app.js
   Cache-Control: public, max-age=300, must-revalidate
