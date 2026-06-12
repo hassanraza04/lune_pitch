@@ -7,7 +7,7 @@
   --bg:           #0A1410;
   --bg-elev-1:    #0F1F1A;
   --bg-elev-2:    #142A24;
-  --bg-glass:     rgba(15, 31, 26, 0.72);
+  --bg-glass:     rgba(15, 31, 26, 0.92);
   --border:       rgba(111, 207, 181, 0.14);
   --border-strong:rgba(111, 207, 181, 0.28);
 
@@ -156,14 +156,20 @@ h3, h4 {
 }
 
 h1 { font-size: clamp(2.7rem, 6vw, 4.6rem); }
-h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); line-height: 1.12; }
 h3 { font-size: clamp(1.15rem, 1.8vw, 1.4rem); }
 h4 { font-size: 1rem; }
 
-/* Serif italic for emphasized words inside display headings */
+/* Balanced wraps kill one-word orphan lines; progressive enhancement */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* Serif italic for emphasized words inside display headings.
+   Weight sits above the roman: the slant and the mint hue both thin
+   the apparent stroke, so the accent needs the compensation. */
 h1 em, h2 em {
   font-style: italic;
-  font-weight: 500;
+  font-weight: 560;
   color: var(--mint);
 }
 
@@ -209,10 +215,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .section--sm { padding: 64px 0; }
 .section--lg { padding: 136px 0; }
 
+/* Left-aligned by default - the editorial axis. The proof moment is
+   the page's single centered exception. */
 .section-header {
   max-width: 720px;
-  margin: 0 auto 64px;
-  text-align: center;
+  margin: 0 0 56px;
+  text-align: left;
 }
 .section-header p { font-size: 1.125rem; margin-top: 1rem; }
 
@@ -246,6 +254,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .btn--primary:hover {
   background: var(--mint-bright);
   box-shadow: 0 0 0 1px var(--mint-bright), 0 8px 24px -12px rgba(111, 207, 181, 0.5);
+}
+
+/* Nav chrome carries a quieter CTA than page-level buttons */
+.nav .btn {
+  padding: 0.5rem 1.1rem;
+  font-size: 0.875rem;
 }
 
 .btn--ghost {
@@ -518,15 +532,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    ============================================ */
 
 .product-card--enrich { --accent: #6FCFB5; }
-.product-card--engage { --accent: #B6A6FF; }
-.product-card--target { --accent: #F5B27E; }
+.product-card--engage { --accent: #A9C6B6; }
+.product-card--target { --accent: #E9DEC2; }
 
 .product-card--enrich .module-code,
 .product-card--enrich .btn--link { color: #6FCFB5; }
 .product-card--engage .module-code,
-.product-card--engage .btn--link { color: #B6A6FF; }
+.product-card--engage .btn--link { color: #A9C6B6; }
 .product-card--target .module-code,
-.product-card--target .btn--link { color: #F5B27E; }
+.product-card--target .btn--link { color: #E9DEC2; }
 
 /* Mini-preview pill row inside each product card */
 .product-preview {
@@ -549,8 +563,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   flex-shrink: 0;          /* but the row itself drives layout, not each pill */
 }
 .product-card--enrich .product-preview span:first-child { color: #6FCFB5; border-color: rgba(111, 207, 181, 0.4); }
-.product-card--engage .product-preview span:first-child { color: #B6A6FF; border-color: rgba(182, 166, 255, 0.4); }
-.product-card--target .product-preview span:first-child { color: #F5B27E; border-color: rgba(245, 178, 126, 0.4); }
+.product-card--engage .product-preview span:first-child { color: #A9C6B6; border-color: rgba(169, 198, 182, 0.4); }
+.product-card--target .product-preview span:first-child { color: #E9DEC2; border-color: rgba(233, 222, 194, 0.4); }
 
 /* ============================================
    Section background variants — flat surface shift only.
@@ -568,8 +582,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 
 /* Accent eyebrows per module — color override */
-.eyebrow--engage { color: #B6A6FF; }
-.eyebrow--target { color: #F5B27E; }
+.eyebrow--engage { color: #A9C6B6; }
+.eyebrow--target { color: #E9DEC2; }
 
 /* ============================================
    Hero kicker — quiet category descriptor above the H1
@@ -687,6 +701,92 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 
 /* ============================================
+   Industry ledger — ruled rows with a trailing arrow that nudges
+   on hover. Replaces the second three-up grid on the home page.
+   ============================================ */
+
+.industry-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+}
+.industry-ledger a {
+  display: grid;
+  grid-template-columns: 16rem 1fr auto;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 26px 4px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--t-fast) var(--ease);
+}
+.industry-ledger a:hover { background: var(--bg-elev-2); }
+.industry-ledger strong {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.industry-ledger a > span:not(.industry-ledger-go) {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.industry-ledger-go {
+  color: var(--mint);
+  font-size: 1.05rem;
+  transition: transform var(--t-fast) var(--ease);
+}
+.industry-ledger a:hover .industry-ledger-go { transform: translateX(4px); }
+@media (max-width: 760px) {
+  .industry-ledger a {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 6px;
+  }
+  .industry-ledger a > span:not(.industry-ledger-go) { grid-column: 1; }
+  .industry-ledger-go { grid-row: 1; }
+}
+
+/* ============================================
+   Certification register — one ruled row, no iconography.
+   Compliance reads more credible as a register entry.
+   ============================================ */
+
+.cert-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+}
+.cert-ledger li {
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cert-ledger li + li { border-left: 1px solid var(--border); }
+.cert-ledger strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.cert-ledger span {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+@media (max-width: 720px) {
+  .cert-ledger { grid-template-columns: 1fr; }
+  .cert-ledger li { padding: 18px 4px; }
+  .cert-ledger li + li {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+}
+
+/* ============================================
    Proof — editorial moment with two contrasting stats
    ============================================ */
 
@@ -709,11 +809,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   color: var(--text-dim);
   margin-right: 0.6em;
 }
+/* Layout only - type inherits the base h2 cut so the page has one
+   display voice, not two near-identical ones */
 .proof-headline {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
   margin: 0 0 3rem;
 }
 .proof-stat-row {
@@ -1040,7 +1138,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   background: rgba(255, 255, 255, 0.03);
   border: 1px dashed var(--border);
   border-radius: var(--radius-sm);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 0.78rem;
   line-height: 1.7;
   color: var(--text-muted);
@@ -1147,34 +1245,36 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   gap: 20px;
   margin-bottom: 48px;
 }
+/* Sub-modules join the ruled-column system: hairline left rules,
+   no boxes, icon and title share a row so the card hugs content */
 .engage-sub {
-  padding: 28px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--bg-elev-1);
+  padding: 4px 24px 4px 0;
   position: relative;
-  transition: all var(--t-med) var(--ease);
 }
-.engage-sub:hover {
-  border-color: rgba(182, 166, 255, 0.4);
-  transform: translateY(-3px);
+.engage-sub + .engage-sub {
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
 }
 .engage-sub-icon {
-  width: 44px; height: 44px;
+  display: inline-grid;
+  width: 38px; height: 38px;
   border-radius: var(--radius-sm);
-  background: rgba(182, 166, 255, 0.12);
-  border: 1px solid rgba(182, 166, 255, 0.32);
-  color: #B6A6FF;
-  display: grid;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  color: var(--mint-dim);
   place-items: center;
-  margin-bottom: 16px;
+  vertical-align: middle;
+  margin: 0 12px 12px 0;
+  float: left;
 }
 .engage-sub h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 600;
   margin-bottom: 8px;
   color: var(--text);
+  line-height: 38px; /* aligns with the floated icon */
 }
+.engage-sub p { clear: both; }
 .engage-sub p {
   font-size: 0.92rem;
   color: var(--text-muted);
@@ -1232,8 +1332,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   border: 1px solid var(--border);
 }
 .target-mock-offer {
-  background: rgba(245, 178, 126, 0.05);
-  border-color: rgba(245, 178, 126, 0.32);
+  background: rgba(233, 222, 194, 0.05);
+  border-color: rgba(233, 222, 194, 0.32);
 }
 .target-mock-segment strong,
 .target-mock-offer strong {
@@ -1250,7 +1350,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .target-mock-arrow {
   align-self: center;
   font-size: 1.4rem;
-  color: #F5B27E;
+  color: #E9DEC2;
   line-height: 1;
 }
 .target-mock-stats {
@@ -1259,7 +1359,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   gap: 12px;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid rgba(245, 178, 126, 0.2);
+  border-top: 1px solid rgba(233, 222, 194, 0.2);
 }
 .target-mock-stats > div { display: flex; flex-direction: column; gap: 2px; }
 .target-mock-stats span {
@@ -1271,7 +1371,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .target-mock-stats strong {
   font-size: 1.1rem;
-  color: #F5B27E;
+  color: #E9DEC2;
   font-weight: 500;
   margin: 0;
 }
@@ -1372,11 +1472,44 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   padding: calc(var(--nav-height) + 88px) 0 0;
   position: relative;
 }
+/* Pages that reuse .hero without the ticker need their own floor */
+.hero:not(:has(.enrich-ticker)) {
+  padding-bottom: 24px;
+}
+
+/* Headline left, live record right - the hero closes its own
+   composition instead of trailing into empty space */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 64px;
+  align-items: center;
+}
+.hero-panel { min-width: 0; }
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-panel { max-width: 420px; }
+}
 
 .hero-content {
   position: relative;
   text-align: left;
   max-width: 56rem;
+}
+
+/* About row: eyebrow column + body, ruled like the page's ledgers */
+.about-row {
+  display: grid;
+  grid-template-columns: 16rem 1fr;
+  gap: 2rem;
+  align-items: start;
+  border-top: 1px solid var(--border-strong);
+  padding-top: 40px;
+}
+.about-row-body h2 { margin-bottom: 1rem; max-width: 22ch; }
+.about-row-body p { max-width: 56ch; font-size: 1.05rem; }
+@media (max-width: 760px) {
+  .about-row { grid-template-columns: 1fr; gap: 1rem; }
 }
 
 .hero h1 {
@@ -1429,11 +1562,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   align-items: baseline;
   gap: 0.7em;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   padding: 14px 2.2em 14px 0;
   white-space: nowrap;
 }
-.ticker-item .raw { color: var(--text-dim); }
+.ticker-item .raw { color: #8FA29B; }
 .ticker-item .to { color: var(--mint); }
 .ticker-item .clean { color: var(--text); }
 .ticker-item .ms { color: var(--text-dim); font-size: 0.72rem; }
@@ -1630,8 +1763,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    ============================================ */
 
 .clients {
-  text-align: center;
+  text-align: left;
 }
+/* Optical size normalization: stacked marks need more height than
+   wide wordmarks to read the same visual weight */
+.client-logos img:nth-child(1) { height: 30px; }  /* ADIB */
+.client-logos img:nth-child(2) { height: 44px; }  /* NBF stacked */
+.client-logos img:nth-child(3) { height: 44px; }  /* D360 stacked */
+.client-logos img:nth-child(4) { height: 23px; }  /* Beyon wide */
+.client-logos img:nth-child(5) { height: 34px; }  /* Alaan */
 .clients-label {
   font-family: var(--font-sans);
   font-size: 0.88rem;
@@ -1640,27 +1780,26 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   letter-spacing: 0.01em;
   margin-bottom: 2.5rem;
 }
+/* Quiet logo strip: monochrome ghost marks at a normalized height
+   directly on the background, ruled top and bottom. No white plates,
+   no boxes - the Stripe / Mercury convention. */
 .client-logos {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 28px 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 30px 4px;
 }
-.client-logo {
-  display: grid;
-  place-items: center;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: #FFFFFF;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  transition: border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+.client-logos img {
+  height: 27px;
+  width: auto;
+  opacity: 0.66;
+  transition: opacity var(--t-fast) var(--ease);
 }
-.client-logo:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
-}
+.client-logos img:hover { opacity: 1; }
 .client-logo img {
   display: block;
   max-width: 100%;
@@ -1670,10 +1809,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   object-fit: contain;
 }
 @media (max-width: 900px) {
-  .client-logos { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 480px) {
-  .client-logos { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ============================================
@@ -1910,12 +2047,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--bg-elev-1);
+  display: flex;
+  flex-direction: column;
 }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 .form-field { display: flex; flex-direction: column; margin-bottom: 16px; }
 .form-field label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 .form-field input,
@@ -1923,8 +2063,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .form-field textarea {
   width: 100%;
   padding: 0.85rem 1rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   color: var(--text);
   font-family: inherit;
@@ -1943,6 +2083,17 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.9rem;
   color: var(--mint);
   min-height: 1.4em;
+}
+
+/* Bot-check slot reserves its height so the form doesn't jump when
+   the widget loads; the widget itself spans the form width. */
+.form-field--turnstile { min-height: 65px; }
+
+/* Submit sits flush right at its natural width - full-width slabs
+   are a mobile pattern, not a desktop one */
+.form-submit { align-self: flex-end; }
+@media (max-width: 600px) {
+  .form-submit { align-self: stretch; width: 100%; }
 }
 
 /* Per-field inline error message — sits below the input */
@@ -2013,7 +2164,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.82rem;
-  color: var(--text-dim);
+  color: var(--text);
   letter-spacing: 0.02em;
   margin-bottom: 1.25rem;
 }
@@ -2032,11 +2183,16 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   justify-content: space-between;
   padding-top: 32px;
   border-top: 1px solid var(--border);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--text-dim);
   flex-wrap: wrap;
   gap: 16px;
+}
+/* Mono belongs to the data line (copyright, address, coordinates),
+   not to the legal navigation links */
+.footer-bottom > div:first-child > span:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
 }
 .footer-bottom > div:first-child {
   display: flex;
@@ -2281,7 +2437,6 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .case-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-  .client-logos { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-brand { grid-column: 1 / -1; }
   .job { grid-template-columns: 1fr auto; }
@@ -2516,11 +2671,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .industry-card:hover::before { opacity: 1; }
 .industry-card:hover { border-color: var(--card-accent, var(--border-strong)); }
 .industry-card--retail   { --card-accent: #6FCFB5; }
-.industry-card--neobanks { --card-accent: #B6A6FF; }
-.industry-card--fintechs { --card-accent: #F5B27E; }
+.industry-card--neobanks { --card-accent: #A9C6B6; }
+.industry-card--fintechs { --card-accent: #E9DEC2; }
 .industry-card--retail   .product-icon { color: #6FCFB5; background: rgba(111, 207, 181, 0.12); border-color: rgba(111, 207, 181, 0.32); }
-.industry-card--neobanks .product-icon { color: #B6A6FF; background: rgba(182, 166, 255, 0.12); border-color: rgba(182, 166, 255, 0.32); }
-.industry-card--fintechs .product-icon { color: #F5B27E; background: rgba(245, 178, 126, 0.12); border-color: rgba(245, 178, 126, 0.32); }
+.industry-card--neobanks .product-icon { color: #A9C6B6; background: rgba(169, 198, 182, 0.12); border-color: rgba(169, 198, 182, 0.32); }
+.industry-card--fintechs .product-icon { color: #E9DEC2; background: rgba(233, 222, 194, 0.12); border-color: rgba(233, 222, 194, 0.32); }
 
 .industry-card-uses {
   list-style: none;
@@ -2690,7 +2845,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.5rem;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.88rem;
   line-height: 1.7;
   color: var(--text-muted);
@@ -2699,7 +2854,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .code-block .tok-key { color: var(--mint); }
 .code-block .tok-str { color: #E8C480; }
-.code-block .tok-num { color: #C49EFF; }
+.code-block .tok-num { color: #E9DEC2; }
 .code-block .tok-com { color: var(--text-dim); font-style: italic; }
 
 /* ============================================
@@ -3073,13 +3228,29 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.9rem;
   max-width: 760px;
 }
-/* Reference tables scroll sideways on narrow screens instead of
-   pushing the page wide */
+/* On narrow screens reference tables restack as definition rows:
+   field / type / required on one line, description full-width below.
+   Sideways scrolling buried the description column. */
 @media (max-width: 600px) {
-  .docs-content table {
+  .docs-content table,
+  .docs-content tbody { display: block; }
+  .docs-content table thead { display: none; }
+  .docs-content table tr {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 4px 14px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .docs-content table td {
     display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    border: 0 !important;
+    padding: 0;
+  }
+  .docs-content table td:last-child {
+    grid-column: 1 / -1;
+    color: var(--text-muted);
   }
 }
 .docs-content table th,
@@ -3171,7 +3342,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .code-tabs-panel pre {
   margin: 0;
   padding: 1.1rem 1.25rem;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  font-family: var(--font-mono);
   font-size: 0.85rem;
   line-height: 1.7;
   color: var(--text-muted);
@@ -3179,17 +3350,20 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .code-tabs-panel pre .tok-key { color: var(--mint); }
 .code-tabs-panel pre .tok-str { color: #E8C480; }
-.code-tabs-panel pre .tok-num { color: #C49EFF; }
+.code-tabs-panel pre .tok-num { color: #E9DEC2; }
 .code-tabs-panel pre .tok-com { color: var(--text-dim); font-style: italic; }
 
 @media (max-width: 960px) {
   .docs-shell { grid-template-columns: 1fr; gap: 24px; padding-top: calc(var(--nav-height) + 16px); }
+  /* Content leads on small screens; the nav lands after the article
+     instead of pushing the H1 below the fold */
+  .docs-content { order: -1; }
   .docs-sidebar {
     position: static;
     max-height: none;
     overflow: visible;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
   }
   .docs-next { grid-template-columns: 1fr; }
 }

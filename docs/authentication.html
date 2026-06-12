@@ -116,7 +116,7 @@
 
       <h2 id="scopes">Scopes</h2>
       <p>Each key carries one or more scopes that restrict what it can do. Set scopes at key creation;
-        you can't widen them later. To grant broader access, create a new key.</p>
+        you can’t widen them later. To grant broader access, create a new key.</p>
       <ul>
         <li><code>enrich:read</code> calls the <code>/v1/enrich</code> endpoint.</li>
         <li><code>enrich:batch</code> submits batch enrichment jobs.</li>
@@ -142,7 +142,7 @@
         </thead>
         <tbody>
           <tr><td><code>401</code></td><td><code>missing_authorization</code></td><td>No <code>Authorization</code> header.</td></tr>
-          <tr><td><code>401</code></td><td><code>invalid_key</code></td><td>Key doesn't exist or was revoked.</td></tr>
+          <tr><td><code>401</code></td><td><code>invalid_key</code></td><td>Key doesn’t exist or was revoked.</td></tr>
           <tr><td><code>403</code></td><td><code>missing_scope</code></td><td>Key is valid but lacks the scope required for this endpoint.</td></tr>
           <tr><td><code>403</code></td><td><code>wrong_environment</code></td><td>You hit a production endpoint with a sandbox key, or vice versa.</td></tr>
         </tbody>
@@ -169,7 +169,7 @@
             <span class="logo-mark"><img src="../assets/images/brand/tab_logo.png" alt="" aria-hidden="true" /></span>
             Lune
           </a>
-          <p>Real-time transaction intelligence for the world's leading financial institutions.</p>
+          <p>Real-time transaction intelligence for the world’s leading financial institutions.</p>
         </div>
         <div class="footer-col">
           <h4>Product</h4>
