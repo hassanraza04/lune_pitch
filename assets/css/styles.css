@@ -1900,6 +1900,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.95rem;
 }
 .contact-detail-text a:hover { color: var(--mint); }
+/* The directions link sits on its own line below the address */
+.contact-detail-text .btn--link { display: flex; }
 
 .form {
   padding: 2.5rem;
