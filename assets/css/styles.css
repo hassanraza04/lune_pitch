@@ -1497,9 +1497,6 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-@media (max-width: 540px) {
-  .products-grid--four { grid-template-columns: 1fr; }
-}
 
 /* Platform/industry entries: ruled columns, not floating cards.
    Hairline top rule per entry; the accent colour arrives as a short
@@ -2371,6 +2368,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
+  /* Placed after the 960px two-column rule so it wins the cascade */
+  .products-grid--four { grid-template-columns: 1fr; }
 
   /* General mobile spacing tweaks */
   .container { padding: 0 20px; }
