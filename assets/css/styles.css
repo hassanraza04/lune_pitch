@@ -3238,8 +3238,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   .docs-content tbody { display: block; }
   .docs-content table thead { display: none; }
   .docs-content table tr {
-    display: grid;
-    grid-template-columns: auto auto 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 4px 14px;
     align-items: baseline;
     padding: 14px 0;
@@ -3251,7 +3251,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
     padding: 0;
   }
   .docs-content table td:last-child {
-    grid-column: 1 / -1;
+    flex-basis: 100%;
     color: var(--text-muted);
   }
 }
