@@ -729,11 +729,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   bottom: 38%;
   transform: translateX(-50%);
   font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   background: var(--bg);
   padding: 0 12px;
+  font-family: var(--font-mono);
 }
 .proof-stat {
   display: flex;
@@ -896,13 +897,14 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .future-tag {
   align-self: flex-start;
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--mint);
   padding: 4px 10px;
   border: 1px solid rgba(95, 181, 161, 0.32);
   border-radius: 999px;
   background: rgba(95, 181, 161, 0.05);
+  font-family: var(--font-mono);
 }
 .future-card h3 {
   font-size: 1.1rem;
@@ -1021,9 +1023,10 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .enrich-mock-label {
   display: block;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   margin-bottom: 10px;
 }
@@ -1212,11 +1215,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .target-mock-label {
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   display: block;
   margin-bottom: 8px;
+  font-family: var(--font-mono);
 }
 .target-mock-segment,
 .target-mock-offer {
@@ -1259,8 +1263,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .target-mock-stats span {
   font-size: 0.72rem;
   color: var(--text-dim);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  font-family: var(--font-mono);
 }
 .target-mock-stats strong {
   font-size: 1.1rem;
@@ -1322,10 +1327,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .pull-quote-attr .placeholder-note {
   margin-top: 10px;
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-muted);
   opacity: 0.7;
+  font-family: var(--font-mono);
 }
 
 /* ============================================
@@ -1470,9 +1476,10 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .stat-label {
   font-size: 0.85rem;
   color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  letter-spacing: 0;
   margin: 0;
+  font-family: var(--font-mono);
 }
 
 /* ============================================
@@ -1768,9 +1775,10 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: inline-block;
   font-size: 0.75rem;
   color: var(--mint);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
 }
 .case-card h3 { margin-bottom: 0.5rem; }
 .case-card .case-meta {
@@ -2110,9 +2118,10 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .compare-card h4 {
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   margin-bottom: 1rem;
+  font-family: var(--font-mono);
 }
 .compare-card--before h4 { color: var(--text-dim); }
 .compare-card--after h4 { color: var(--mint); }
@@ -2150,11 +2159,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .roadmap-phase {
   font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--mint);
   margin-bottom: 1rem;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 .roadmap-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
 .roadmap-card p { font-size: 0.92rem; margin: 0; }
@@ -2201,27 +2211,25 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    Page header (sub-pages)
    ============================================ */
 
+/* Subpage headers: left-aligned, ruled underneath, no glow field */
 .page-header {
-  padding: calc(var(--nav-height) + 48px) 0 56px;
-  text-align: center;
+  padding: calc(var(--nav-height) + 72px) 0 48px;
+  text-align: left;
   position: relative;
-  overflow: hidden;
 }
-.page-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 50% 0%, var(--mint-glow), transparent 70%);
-  pointer-events: none;
+.page-header .container {
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 40px;
 }
 .page-header h1 {
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
   margin-bottom: 1rem;
+  max-width: 18ch;
 }
 .page-header p {
-  max-width: 620px;
-  margin: 0 auto;
-  font-size: 1.1rem;
+  max-width: 560px;
+  margin: 0;
+  font-size: 1.05rem;
 }
 
 /* ============================================
@@ -2399,8 +2407,8 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: inline-block;
   font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   padding: 0.18rem 0.48rem;
   background: rgba(224, 123, 111, 0.12);
   color: #E07B6F;
@@ -2410,6 +2418,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   vertical-align: middle;
   line-height: 1.4;
   white-space: nowrap;
+  font-family: var(--font-mono);
 }
 
 .placeholder-banner {
@@ -2555,10 +2564,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .industry-card-modules > span {
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   margin-right: 4px;
+  font-family: var(--font-mono);
 }
 .industry-card-modules strong {
   display: inline-block;
@@ -2670,13 +2680,14 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: inline-block;
   font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
   background: var(--mint-glow);
   color: var(--mint);
   margin-bottom: 1rem;
+  font-family: var(--font-mono);
 }
 .doc-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .doc-card p { margin: 0; font-size: 0.92rem; }
@@ -2788,8 +2799,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.78rem;
   color: var(--text-dim);
   margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
 }
 .blog-meta .blog-cat { color: var(--mint); }
 .blog-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
@@ -2930,11 +2942,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .docs-nav-heading {
   display: block;
   font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   margin-bottom: 6px;
   padding: 0 12px;
+  font-family: var(--font-mono);
 }
 .docs-nav-section ul { list-style: none; padding: 0; margin: 0; }
 .docs-nav-section li { margin: 0; }
@@ -3077,9 +3090,10 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .docs-content table th {
   color: var(--text-dim);
   font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 .docs-content table td:first-child { color: var(--text); }
 
@@ -3107,10 +3121,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .docs-next span {
   display: block;
   font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  text-transform: lowercase;
   color: var(--text-dim);
   margin-bottom: 4px;
+  font-family: var(--font-mono);
 }
 .docs-next strong {
   color: var(--text);
@@ -3340,12 +3355,13 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .consent-locked-label {
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  letter-spacing: 0;
   color: var(--mint);
   padding: 0.25rem 0.6rem;
   background: var(--mint-glow);
   border-radius: 4px;
+  font-family: var(--font-mono);
 }
 
 /* Toggle switch */
