@@ -42,7 +42,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -80,23 +80,46 @@
   <!-- ===== Hero ===== -->
   <main id="main-content">
   <section class="hero">
-    <div class="hero-stars" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-content">
-        <p class="hero-kicker reveal">Real-time transaction intelligence for banks &amp; fintechs</p>
-        <h1 class="reveal" data-delay="1">
+        <p class="hero-kicker reveal">real-time transaction intelligence / banks &amp; fintechs</p>
+        <h1 class="reveal">
           <span class="line">Transaction data,</span>
-          <span class="line gradient-text">redefined.</span>
+          <span class="line"><em>redefined.</em></span>
         </h1>
-        <p class="hero-sub reveal" data-delay="2">
-          From complexity to simplicity: real-time transaction intelligence.
+        <p class="hero-sub reveal">
+          From complexity to simplicity. Lune reads the raw transaction stream your
+          systems already produce and returns records your customers can actually use.
         </p>
-        <div class="hero-cta reveal" data-delay="3">
-          <a href="/contact" class="btn btn--primary">
-            Schedule a Demo
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+        <div class="hero-cta reveal">
+          <a href="/contact" class="btn btn--primary">Schedule a demo</a>
           <a href="/products" class="btn btn--text">Explore the platform <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- The product, demonstrated: raw descriptors resolving into clean records -->
+    <div class="enrich-ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-items">
+          <span class="ticker-item"><span class="raw">CRR*TAB DXB 4519 AED 86.50</span> <span class="to">→</span> <span class="clean">Carrefour / Groceries</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">STBKS DEIRA #00214 21.00</span> <span class="to">→</span> <span class="clean">Starbucks / Coffee</span> <span class="ms">0.3ms</span></span>
+          <span class="ticker-item"><span class="raw">TALABAT.COM AE 56.25</span> <span class="to">→</span> <span class="clean">Talabat / Food delivery</span> <span class="ms">0.5ms</span></span>
+          <span class="ticker-item"><span class="raw">ADNOC 0182 FUEL DXB 120.00</span> <span class="to">→</span> <span class="clean">ADNOC / Fuel</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">NETFLIX.COM 866-579 39.00</span> <span class="to">→</span> <span class="clean">Netflix / Subscription</span> <span class="ms">0.3ms</span></span>
+          <span class="ticker-item"><span class="raw">CAREEM RIDES DXB 32.75</span> <span class="to">→</span> <span class="clean">Careem / Transport</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">AMZN MKTP AE*2K4 154.99</span> <span class="to">→</span> <span class="clean">Amazon / Shopping</span> <span class="ms">0.5ms</span></span>
+          <span class="ticker-item"><span class="raw">DEWA EPAY 410.20</span> <span class="to">→</span> <span class="clean">DEWA / Utilities</span> <span class="ms">0.3ms</span></span>
+        </div>
+        <div class="ticker-items" aria-hidden="true">
+          <span class="ticker-item"><span class="raw">CRR*TAB DXB 4519 AED 86.50</span> <span class="to">→</span> <span class="clean">Carrefour / Groceries</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">STBKS DEIRA #00214 21.00</span> <span class="to">→</span> <span class="clean">Starbucks / Coffee</span> <span class="ms">0.3ms</span></span>
+          <span class="ticker-item"><span class="raw">TALABAT.COM AE 56.25</span> <span class="to">→</span> <span class="clean">Talabat / Food delivery</span> <span class="ms">0.5ms</span></span>
+          <span class="ticker-item"><span class="raw">ADNOC 0182 FUEL DXB 120.00</span> <span class="to">→</span> <span class="clean">ADNOC / Fuel</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">NETFLIX.COM 866-579 39.00</span> <span class="to">→</span> <span class="clean">Netflix / Subscription</span> <span class="ms">0.3ms</span></span>
+          <span class="ticker-item"><span class="raw">CAREEM RIDES DXB 32.75</span> <span class="to">→</span> <span class="clean">Careem / Transport</span> <span class="ms">0.4ms</span></span>
+          <span class="ticker-item"><span class="raw">AMZN MKTP AE*2K4 154.99</span> <span class="to">→</span> <span class="clean">Amazon / Shopping</span> <span class="ms">0.5ms</span></span>
+          <span class="ticker-item"><span class="raw">DEWA EPAY 410.20</span> <span class="to">→</span> <span class="clean">DEWA / Utilities</span> <span class="ms">0.3ms</span></span>
         </div>
       </div>
     </div>
@@ -107,16 +130,16 @@
     <div class="container">
       <div class="stats-feature reveal">
         <div class="stat-big">
-          <div class="stat-big-value"><span class="counter" data-target="1.5">0</span>B+</div>
-          <p class="stat-big-label">Transactions annually</p>
+          <div class="stat-big-value">1.5<span class="unit">B+</span></div>
+          <p class="stat-big-label">transactions enriched annually</p>
         </div>
         <div class="stat-big">
-          <div class="stat-big-value"><span class="counter" data-target="0.5">0</span>ms</div>
-          <p class="stat-big-label">Response time</p>
+          <div class="stat-big-value">0.5<span class="unit">ms</span></div>
+          <p class="stat-big-label">response time</p>
         </div>
         <div class="stat-big">
-          <div class="stat-big-value"><span class="counter" data-target="99">0</span>%</div>
-          <p class="stat-big-label">Categorization coverage</p>
+          <div class="stat-big-value">99<span class="unit">%</span></div>
+          <p class="stat-big-label">categorization coverage</p>
         </div>
       </div>
     </div>
@@ -143,13 +166,23 @@
     <div class="container">
       <div class="feature-row">
         <div class="feature-text reveal">
-          <span class="eyebrow">About Lune</span>
+          <span class="eyebrow"><span class="phase phase--new" aria-hidden="true"></span><span class="idx">00</span>/ about</span>
           <h2>Built for the world's most demanding banking platforms.</h2>
-          <p>Lune sits between your raw transaction stream and your customer experience layer, turning noise into clean, contextual, monetizable signal.</p>
-          <a href="/about" class="btn btn--primary">Learn more</a>
+          <p>Lune sits between your raw transaction stream and your customer experience layer. Noise goes in. Clean, contextual, monetizable records come out.</p>
+          <a href="/about" class="btn btn--link">More about Lune <span class="arrow">→</span></a>
         </div>
-        <div class="feature-visual reveal" data-delay="1">
-          <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=1200&q=80" alt="Dashboard analytics visualization" loading="lazy" width="1200" height="800" />
+        <div class="feature-visual reveal">
+          <div class="ledger-panel" aria-label="A single enriched transaction record">
+            <div class="ledger-panel-head"><span>enriched record</span><span class="ledger-live">live</span></div>
+            <dl class="ledger-rows">
+              <div><dt>merchant</dt><dd>Starbucks</dd></div>
+              <div><dt>category</dt><dd>Food &amp; drink / Coffee</dd></div>
+              <div><dt>location</dt><dd>Deira, Sharjah · AE</dd></div>
+              <div><dt>carbon</dt><dd>0.21 kg CO₂e</dd></div>
+              <div><dt>recurring</dt><dd>daily pattern</dd></div>
+              <div><dt>latency</dt><dd>0.38 ms</dd></div>
+            </dl>
+          </div>
         </div>
       </div>
     </div>
@@ -159,18 +192,13 @@
   <section class="section section--alt">
     <div class="container">
       <div class="section-header reveal">
-        <span class="eyebrow">The Lune Platform</span>
+        <span class="eyebrow"><span class="phase phase--crescent" aria-hidden="true"></span><span class="idx">01</span>/ the platform</span>
         <h2>Three modules. One unified data layer.</h2>
       </div>
 
       <div class="products-grid">
         <article class="product-card product-card--enrich reveal">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 2v20M2 12h20"/>
-              <circle cx="12" cy="12" r="9"/>
-            </svg>
-          </div>
+          <span class="module-code" aria-hidden="true">/v1/enrich</span>
           <h3>Enrich</h3>
           <p>Global transaction enrichment in real time. Categories, merchants, geolocation, and carbon footprint, in a single API call.</p>
           <div class="product-preview" aria-hidden="true">
@@ -181,13 +209,8 @@
           <a href="/products#enrich" class="btn btn--link">Learn more <span class="arrow">→</span></a>
         </article>
 
-        <article class="product-card product-card--engage reveal" data-delay="1">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="16" rx="2"/>
-              <path d="M3 10h18M8 14h3M8 17h6"/>
-            </svg>
-          </div>
+        <article class="product-card product-card--engage reveal">
+          <span class="module-code" aria-hidden="true">&lt;Engage /&gt;</span>
           <h3>Engage</h3>
           <p>A visual, intuitive interface for users to track spending, set goals, and manage money with confidence. White-labeled into your app.</p>
           <div class="product-preview" aria-hidden="true">
@@ -198,14 +221,8 @@
           <a href="/products#engage" class="btn btn--link">Learn more <span class="arrow">→</span></a>
         </article>
 
-        <article class="product-card product-card--target reveal" data-delay="2">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
-          </div>
+        <article class="product-card product-card--target reveal">
+          <span class="module-code" aria-hidden="true">/v1/segments</span>
           <h3>Target</h3>
           <p>Hyper-personalized precision in capturing every opportunity. Segment, predict, and engage customers with offers grounded in real behavior.</p>
           <div class="product-preview" aria-hidden="true">
@@ -219,23 +236,27 @@
     </div>
   </section>
 
-  <!-- ===== Why Lune ===== -->
+  <!-- ===== Why Lune: ruled ledger table ===== -->
   <section class="section section--sm">
     <div class="container">
-      <ul class="why-strip reveal">
+      <ul class="why-ledger reveal">
         <li>
+          <span class="why-ledger-key">i.</span>
           <strong>Multi-lingual global enrichment</strong>
-          <span>Local merchant graphs for emerging markets.</span>
+          <span>Local merchant graphs for emerging markets, Arabic included.</span>
         </li>
         <li>
+          <span class="why-ledger-key">ii.</span>
           <strong>Future-ready architecture</strong>
-          <span>Continuously improving models, deployed live.</span>
+          <span>Models that keep improving after they ship.</span>
         </li>
         <li>
+          <span class="why-ledger-key">iii.</span>
           <strong>Modular platform</strong>
-          <span>Use Enrich, Engage, and Target on their own or together.</span>
+          <span>Enrich, Engage, and Target work alone or together.</span>
         </li>
         <li>
+          <span class="why-ledger-key">iv.</span>
           <strong>Proven track-record</strong>
           <span>In production at leading regional banks and fintechs.</span>
         </li>
@@ -247,30 +268,24 @@
   <section class="section section--mesh">
     <div class="container">
       <div class="section-header reveal">
-        <span class="eyebrow">Industries We Serve</span>
+        <span class="eyebrow"><span class="phase phase--quarter" aria-hidden="true"></span><span class="idx">02</span>/ industries</span>
         <h2>Wherever transactions live, Lune fits.</h2>
       </div>
       <div class="products-grid">
         <article class="product-card product-card--enrich reveal">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-9h6v9"/></svg>
-          </div>
+          <span class="module-code" aria-hidden="true">seg: retail</span>
           <h3>Retail Banks</h3>
           <p>Modernize the core mobile experience for millions of customers without re-platforming.</p>
           <a href="/industries#retail" class="btn btn--link">For retail banks <span class="arrow">→</span></a>
         </article>
-        <article class="product-card product-card--engage reveal" data-delay="1">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M7 16h3"/></svg>
-          </div>
+        <article class="product-card product-card--engage reveal">
+          <span class="module-code" aria-hidden="true">seg: neo + telco</span>
           <h3>Neo-Banks &amp; Telco Wallets</h3>
           <p>Ship category-leading PFM out of the box. Differentiate on experience, not just unit economics.</p>
           <a href="/industries#neobanks" class="btn btn--link">For neo-banks &amp; wallets <span class="arrow">→</span></a>
         </article>
-        <article class="product-card product-card--target reveal" data-delay="2">
-          <div class="product-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-3 7h6l-3 7M5 13l-3 7h6l-3-7M19 13l-3 7h6l-3-7"/></svg>
-          </div>
+        <article class="product-card product-card--target reveal">
+          <span class="module-code" aria-hidden="true">seg: fintech</span>
           <h3>Fintechs</h3>
           <p>From SMB cards to BNPL. Embed transaction context for smarter products and faster underwriting.</p>
           <a href="/industries#fintechs" class="btn btn--link">For fintechs <span class="arrow">→</span></a>
@@ -283,7 +298,7 @@
   <section class="section">
     <div class="container">
       <div class="proof reveal">
-        <p class="proof-eyebrow">From the ADIB case study</p>
+        <p class="proof-eyebrow"><span class="phase phase--full" aria-hidden="true"></span><span class="idx">03</span>/ proof, from the ADIB case study</p>
         <h2 class="proof-headline">Succeeded where others failed.</h2>
         <div class="proof-stat-row">
           <div class="proof-stat">
@@ -305,7 +320,7 @@
     <div class="container">
       <div class="section-header reveal section-header--row">
         <div>
-          <span class="eyebrow">Case Studies</span>
+          <span class="eyebrow"><span class="phase phase--gibbous" aria-hidden="true"></span><span class="idx">04</span>/ case studies</span>
           <h2>Customer stories.</h2>
         </div>
         <a href="/case-studies" class="btn btn--text">See all <span class="arrow">→</span></a>
@@ -337,7 +352,7 @@
   <section class="section section--sm section--alt">
     <div class="container">
       <div class="section-header reveal">
-        <span class="eyebrow">Certified By</span>
+        <span class="eyebrow"><span class="phase phase--quarter" aria-hidden="true"></span><span class="idx">05</span>/ certified</span>
         <h2>Bank-grade trust, by design.</h2>
       </div>
       <div class="trust reveal">

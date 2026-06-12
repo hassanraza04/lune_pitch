@@ -95,65 +95,9 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* ---------- Animated counters ---------- */
-  const counters = $$('.counter');
-  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const animateCounter = (el) => {
-    const target = parseFloat(el.dataset.target || '0');
-    if (!Number.isFinite(target)) return;
-    const decimals = (el.dataset.target || '').split('.')[1]?.length || 0;
-
-    // Respect user motion preference — skip the animation entirely
-    if (prefersReducedMotion) {
-      el.textContent = decimals > 0 ? target.toFixed(decimals) : Math.round(target).toLocaleString();
-      return;
-    }
-
-    const duration = 1400;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = target * eased;
-      el.textContent = decimals > 0
-        ? value.toFixed(decimals)
-        : Math.round(value).toLocaleString();
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      } else {
-        el.textContent = decimals > 0
-          ? target.toFixed(decimals)
-          : Math.round(target).toLocaleString();
-      }
-    };
-    requestAnimationFrame(tick);
-  };
-
-  if ('IntersectionObserver' in window && counters.length) {
-    const cio = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    counters.forEach((el) => cio.observe(el));
-  } else {
-    counters.forEach((el) => {
-      const target = parseFloat(el.dataset.target || '0');
-      const decimals = (el.dataset.target || '').split('.')[1]?.length || 0;
-      if (Number.isFinite(target)) {
-        el.textContent = decimals > 0 ? target.toFixed(decimals) : target.toLocaleString();
-      }
-    });
-  }
+  /* Stat counters removed by design. Figures are set statically in the
+     markup: numbers that hold still read as audited, numbers that animate
+     read as marketing. */
 
   /* ---------- Email validation (RFC-5322 simplified) ---------- */
   const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24}$/;
