@@ -33,18 +33,16 @@ by Hassan Raza. Not affiliated with Lune Data.
 
 ## Design language
 
-Financial editorial meets terminal. Lune parses raw transaction strings
-for a living, so the site borrows the visual language of the ledger:
+Dark, sans-led product design in the Stripe / Mercury idiom:
 
-- **Type** — Fraunces (optical sizing) for display, Hanken Grotesk for
-  body and UI, IBM Plex Mono strictly for data: figures, codes, the ticker
-- **Structure** — hairline-ruled rows and columns instead of card grids;
-  mono-keyed section indices (`01 / The platform`) with a moon-phase
-  glyph that waxes toward full at the proof section (Lune = moon)
-- **Signature element** — the enrichment ticker under the hero: raw card
-  descriptors stream past and resolve into clean records
-- **Motion** — one signature animation, quick fades elsewhere, everything
-  static under `prefers-reduced-motion`
+- **Type** — Instrument Sans everywhere, weight-driven hierarchy, tight
+  tracking at display sizes. IBM Plex Mono only for code and API paths
+- **Surfaces** — elevated cards with soft shadows and subtle borders on
+  a dark green ground; the mint from the logo used with restraint
+- **Signature element** — a live enriched-record card in the hero
+  showing what the API returns
+- **Motion** — quiet hover lifts and quick fades; everything static
+  under `prefers-reduced-motion`
 
 ## Stack
 
