@@ -394,9 +394,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   min-height: 44px;
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
-/* Current page marked with a mono asterisk, not an underline bar */
+/* Current page marked with a mono asterisk, not an underline bar.
+   The alternative-text syntax keeps screen readers from announcing
+   the glyph; aria-current already carries the semantics. */
 .nav-links a[aria-current="page"]::before {
-  content: '*';
+  content: '*' / '';
   color: var(--mint);
   margin-right: 0.45em;
 }
@@ -2247,23 +2249,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .reveal.is-visible {
   opacity: 1;
 }
-.reveal[data-delay="1"],
-.reveal[data-delay="2"],
-.reveal[data-delay="3"],
-.reveal[data-delay="4"] { transition-delay: 0ms; }
-
 @media (prefers-reduced-motion: reduce) {
   /* Reveal animations: show immediately, no transform */
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
-  /* Kill decorative continuous animations */
-  .hero-badge .dot { animation: none; }
+  /* The enrichment ticker holds still; the static first items remain visible */
+  .ticker-track { animation: none; }
   /* Disable button/link micro-transforms on hover */
-  .btn--primary:hover,
-  .product-card:hover,
   .industry-card:hover,
-  .engage-sub:hover,
-  .case-teaser:hover {
+  .engage-sub:hover {
     transform: none;
   }
   .btn--link:hover .arrow,

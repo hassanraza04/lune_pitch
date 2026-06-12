@@ -54,17 +54,25 @@ def audit_file(path: Path) -> None:
     if RE_JS_HREF.search(text):
         issues["security"].append(f"{rel}: javascript: href")
 
-    # Internal link integrity
+    # Internal link integrity.
+    # The site uses clean URLs: /about resolves to about.html via
+    # Cloudflare Pages, and absolute paths (/products) resolve from the
+    # repo root regardless of the linking file's directory.
     for href in re.findall(r'href="([^"#?:][^"#?]*)"', text):
         href = href.split("?")[0].split("#")[0]
         if not href:
             continue
         if href.startswith(("mailto:", "tel:", "http")):
             continue
-        target = (path.parent / href).resolve()
-        if target.is_dir():
-            target = target / "index.html"
-        if not target.exists():
+        base = ROOT if href.startswith("/") else path.parent
+        target = (base / href.lstrip("/")).resolve()
+        candidates = [target]
+        if target.is_dir() or href.endswith("/"):
+            candidates = [target / "index.html"]
+        elif target.suffix == "":
+            # clean URL: try .html sibling and directory index
+            candidates = [target.with_suffix(".html"), target / "index.html", target]
+        if not any(c.exists() for c in candidates):
             try:
                 target_rel = target.relative_to(ROOT)
             except ValueError:
@@ -87,7 +95,8 @@ def audit_sitemap() -> None:
         elif u.endswith("/"):
             sitemap_files.add(u.lstrip("/") + "index.html")
         else:
-            sitemap_files.add(u.lstrip("/"))
+            # clean URLs in the sitemap map to .html files on disk
+            sitemap_files.add(u.lstrip("/") + ".html")
 
     indexable: set[str] = set()
     for p in HTML_FILES:
