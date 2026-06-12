@@ -1497,6 +1497,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+@media (max-width: 540px) {
+  .products-grid--four { grid-template-columns: 1fr; }
+}
 
 /* Platform/industry entries: ruled columns, not floating cards.
    Hairline top rule per entry; the accent colour arrives as a short
@@ -3075,6 +3078,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   margin: 1.5rem 0;
   font-size: 0.9rem;
   max-width: 760px;
+}
+/* Reference tables scroll sideways on narrow screens instead of
+   pushing the page wide */
+@media (max-width: 600px) {
+  .docs-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 .docs-content table th,
 .docs-content table td {
