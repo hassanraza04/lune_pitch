@@ -16,20 +16,35 @@ by Hassan Raza. Not affiliated with Lune Data.
 ├── *.html                  13 marketing pages (home, products, industries, …)
 ├── docs/                   5 developer documentation pages with sidebar layout
 ├── functions/api/          Cloudflare Pages Function for the contact form backend
-├── audits/                 Security & accessibility audit documentation
-├── styles.css              ~50 KB design system, all in one file, no preprocessor
-├── app.js                  Frontend: nav, reveal-on-scroll, counters, code tabs, form
-├── consent.js              Cookie consent banner + preferences modal
+├── audits/                 Security & accessibility audit scripts + docs
+├── assets/
+│   ├── css/styles.css      Design system, all in one file, no preprocessor
+│   ├── js/app.js           Frontend: nav, fades, code tabs, form validation
+│   ├── js/consent.js       Cookie consent banner + preferences modal
+│   └── images/             Brand mark, social card, customer logos (+ raw sources)
 ├── _headers                Cloudflare Pages — security & cache headers per path
-├── _redirects              Cloudflare Pages — 301 redirects + 404 fallback
-├── sitemap.xml             SEO sitemap (16 indexable URLs)
+├── _redirects              Cloudflare Pages — redirects + 404 fallback
+├── sitemap.xml             SEO sitemap (clean URLs)
 ├── robots.txt              Crawl rules + sitemap pointer
 ├── .well-known/security.txt  Responsible-disclosure contact (RFC 9116)
-├── og-image.png            1200×630 social preview (LinkedIn / Slack / iMessage)
-├── tab_logo.png            Brand logo (favicon source + nav mark + OG)
-├── favicon-{16,32,48}.png  Browser tab favicons
+├── favicon-{16,32}.png     Browser tab favicons
 └── apple-touch-icon.png    iOS bookmark icon (180×180)
 ```
+
+## Design language
+
+Financial editorial meets terminal. Lune parses raw transaction strings
+for a living, so the site borrows the visual language of the ledger:
+
+- **Type** — Instrument Serif for display, Public Sans for body,
+  IBM Plex Mono for data, labels, nav, and buttons
+- **Structure** — hairline-ruled rows and columns instead of card grids;
+  lowercase mono section indices (`01 / the platform`) with a moon-phase
+  glyph that waxes toward full at the proof section (Lune = moon)
+- **Signature element** — the enrichment ticker under the hero: raw card
+  descriptors stream past and resolve into clean records
+- **Motion** — one signature animation, quick fades elsewhere, everything
+  static under `prefers-reduced-motion`
 
 ## Stack
 
