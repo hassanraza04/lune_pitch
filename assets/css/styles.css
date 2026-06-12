@@ -23,17 +23,19 @@
 
   --danger:       #E07B6F;
 
-  /* Type stack: financial-editorial meets terminal.
-     Serif for display, quiet sans for body, mono for data and labels. */
-  --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  /* Type stack: financial editorial. A weighted serif for display,
+     a refined grotesque for everything human, mono reserved for
+     actual data - figures, codes, the ticker. Mono is seasoning,
+     not the meal. */
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Radii: ledger aesthetic - near-square corners, nothing pillowy */
-  --radius-sm: 2px;
-  --radius:    3px;
-  --radius-lg: 4px;
-  --radius-xl: 6px;
+  /* Radii: quiet and modern - neither pillowy nor severe */
+  --radius-sm: 6px;
+  --radius:    8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
   --shadow:    0 12px 40px -12px rgba(0,0,0,0.6);
@@ -90,7 +92,7 @@ html {
   background: var(--mint);
   color: var(--bg);
   padding: 10px 18px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   font-size: 0.92rem;
   font-weight: 500;
   text-decoration: none;
@@ -134,13 +136,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
    Typography
    ============================================ */
 
-/* Display type is Instrument Serif - single weight, so hierarchy comes
-   from size and the roman/italic contrast, not weight. */
+/* Display type is Fraunces with optical sizing - real weight at
+   display sizes so strokes hold on a dark ground. */
 h1, h2 {
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: 0.005em;
+  font-optical-sizing: auto;
+  font-weight: 540;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
   margin: 0;
 }
 /* h3/h4 stay sans: serif at small sizes muddies on dark backgrounds */
@@ -152,32 +155,34 @@ h3, h4 {
   margin: 0;
 }
 
-h1 { font-size: clamp(2.9rem, 7vw, 5.5rem); }
-h2 { font-size: clamp(2.1rem, 4.2vw, 3.4rem); }
+h1 { font-size: clamp(2.7rem, 6vw, 4.6rem); }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
 h3 { font-size: clamp(1.15rem, 1.8vw, 1.4rem); }
 h4 { font-size: 1rem; }
 
 /* Serif italic for emphasized words inside display headings */
 h1 em, h2 em {
   font-style: italic;
+  font-weight: 500;
   color: var(--mint);
 }
 
 p { margin: 0 0 1rem; color: var(--text-muted); }
 
-/* Section label: lowercase mono ledger index, e.g. "01 / platform".
-   Replaces the all-caps eyebrow + line pattern. */
+/* Section label: a quiet sans label keyed by a mono ledger index,
+   e.g. "01 / The platform". */
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: lowercase;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--mint);
   margin-bottom: 1.25rem;
 }
 .eyebrow .idx {
+  font-family: var(--font-mono);
+  font-weight: 400;
   color: var(--text-dim);
   margin-right: 0.6em;
 }
@@ -186,6 +191,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    serif italic mint, not a gradient. */
 .gradient-text {
   font-style: italic;
+  font-weight: 500;
   color: var(--mint);
 }
 
@@ -199,9 +205,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   padding: 0 24px;
 }
 
-.section { padding: 88px 0; position: relative; }
-.section--sm { padding: 56px 0; }
-.section--lg { padding: 128px 0; }
+.section { padding: 104px 0; position: relative; }
+.section--sm { padding: 64px 0; }
+.section--lg { padding: 136px 0; }
 
 .section-header {
   max-width: 720px;
@@ -214,39 +220,23 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
    Buttons
    ============================================ */
 
-/* Buttons: rectangular, mono label, bracket markers appear on hover.
-   The terminal idiom - distinct from the pill-with-arrow template. */
+/* Buttons: clean rectangles, sans labels, restrained hovers.
+   No pills, no arrows-in-pills, no gimmicks. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0.8rem 1.4rem;
+  padding: 0.78rem 1.5rem;
   border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
   white-space: nowrap;
   cursor: pointer;
   position: relative;
-}
-.btn--primary::before, .btn--ghost::before { content: '['; }
-.btn--primary::after,  .btn--ghost::after  { content: ']'; }
-.btn--primary::before, .btn--primary::after,
-.btn--ghost::before, .btn--ghost::after {
-  opacity: 0;
-  transition: opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
-  transform: translateX(3px);
-}
-.btn--primary::after, .btn--ghost::after { transform: translateX(-3px); }
-.btn--primary:hover::before, .btn--primary:hover::after,
-.btn--primary:focus-visible::before, .btn--primary:focus-visible::after,
-.btn--ghost:hover::before, .btn--ghost:hover::after,
-.btn--ghost:focus-visible::before, .btn--ghost:focus-visible::after {
-  opacity: 0.7;
-  transform: translateX(0);
 }
 
 .btn--primary {
@@ -255,6 +245,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .btn--primary:hover {
   background: var(--mint-bright);
+  box-shadow: 0 0 0 1px var(--mint-bright), 0 8px 24px -12px rgba(111, 207, 181, 0.5);
 }
 
 .btn--ghost {
@@ -385,8 +376,9 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .nav-links a {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
   color: var(--text-muted);
   transition: color var(--t-fast) var(--ease);
   position: relative;
@@ -394,13 +386,15 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   min-height: 44px;
 }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
-/* Current page marked with a mono asterisk, not an underline bar.
-   The alternative-text syntax keeps screen readers from announcing
-   the glyph; aria-current already carries the semantics. */
+/* Current page carries a small mint point; aria-current carries
+   the semantics for assistive tech. */
 .nav-links a[aria-current="page"]::before {
-  content: '*' / '';
-  color: var(--mint);
-  margin-right: 0.45em;
+  content: '' / '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--mint);
+  margin-right: 0.55em;
 }
 
 /* The mobile CTA list item only renders inside the mobile drawer (≤720px). */
@@ -491,11 +485,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .stat-big-value .unit { color: var(--mint); }
 .stat-big-label {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-muted);
-  text-transform: lowercase;
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
   margin: 0;
 }
 .stat-big-sub {
@@ -583,13 +577,14 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 
 .hero-kicker {
   text-align: left;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0;
-  text-transform: lowercase;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--text-dim);
   margin: 0 0 2rem;
 }
+.hero-kicker .sep { color: var(--mint); margin: 0 0.35em; }
 
 /* ============================================
    Why Lune — ruled ledger rows. Roman-numeral keys in mono;
@@ -701,14 +696,19 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   margin: 0 auto;
 }
 .proof-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0;
-  text-transform: lowercase;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--mint);
   margin: 0 0 1.25rem;
 }
-.proof-eyebrow .idx { color: var(--text-dim); margin-right: 0.6em; }
+.proof-eyebrow .idx {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-right: 0.6em;
+}
 .proof-headline {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 500;
@@ -732,7 +732,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   transform: translateX(-50%);
   font-size: 0.78rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   background: var(--bg);
   padding: 0 12px;
@@ -836,7 +836,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--mint);
 }
 .case-teaser h3 {
@@ -900,11 +900,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   align-self: flex-start;
   font-size: 0.7rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--mint);
   padding: 4px 10px;
   border: 1px solid rgba(95, 181, 161, 0.32);
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: rgba(95, 181, 161, 0.05);
   font-family: var(--font-mono);
 }
@@ -1028,7 +1028,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-family: var(--font-mono);
   font-size: 0.76rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   margin-bottom: 10px;
 }
@@ -1218,7 +1218,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .target-mock-label {
   font-size: 0.7rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   display: block;
   margin-bottom: 8px;
@@ -1266,7 +1266,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.72rem;
   color: var(--text-dim);
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   font-family: var(--font-mono);
 }
 .target-mock-stats strong {
@@ -1330,7 +1330,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   margin-top: 10px;
   font-size: 0.75rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-muted);
   opacity: 0.7;
   font-family: var(--font-mono);
@@ -1478,7 +1478,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .stat-label {
   font-size: 0.85rem;
   color: var(--text-muted);
-  text-transform: lowercase;
+  text-transform: none;
   letter-spacing: 0;
   margin: 0;
   font-family: var(--font-mono);
@@ -1633,11 +1633,11 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   text-align: center;
 }
 .clients-label {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-dim);
-  text-transform: lowercase;
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
   margin-bottom: 2.5rem;
 }
 .client-logos {
@@ -1778,7 +1778,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.75rem;
   color: var(--mint);
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   margin-bottom: 0.75rem;
   font-family: var(--font-mono);
 }
@@ -2010,17 +2010,12 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   max-width: 280px;
 }
 .footer-col h4 {
-  font-family: var(--font-mono);
-  font-weight: 400;
-  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.82rem;
   color: var(--text-dim);
-  text-transform: lowercase;
-  letter-spacing: 0;
+  letter-spacing: 0.02em;
   margin-bottom: 1.25rem;
-}
-.footer-col h4::before {
-  content: '/ ';
-  color: var(--mint);
 }
 .footer-col ul { list-style: none; padding: 0; margin: 0; }
 .footer-col li { margin-bottom: 0.6rem; }
@@ -2099,7 +2094,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   gap: 0.5rem;
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  border-radius: var(--radius);
   font-size: 0.8rem;
   color: var(--mint);
   background: var(--mint-glow);
@@ -2123,7 +2118,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .compare-card h4 {
   font-size: 0.78rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   margin-bottom: 1rem;
   font-family: var(--font-mono);
 }
@@ -2164,7 +2159,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .roadmap-phase {
   font-size: 0.75rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--mint);
   margin-bottom: 1rem;
   font-weight: 500;
@@ -2406,7 +2401,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   padding: 0.18rem 0.48rem;
   background: rgba(224, 123, 111, 0.12);
   color: #E07B6F;
@@ -2563,7 +2558,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 .industry-card-modules > span {
   font-size: 0.7rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   margin-right: 4px;
   font-family: var(--font-mono);
@@ -2573,7 +2568,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.8rem;
   font-weight: 500;
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
   color: var(--text);
@@ -2679,7 +2674,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
   background: var(--mint-glow);
@@ -2797,7 +2792,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   font-size: 0.78rem;
   color: var(--text-dim);
   margin-bottom: 0.75rem;
-  text-transform: lowercase;
+  text-transform: none;
   letter-spacing: 0;
   font-family: var(--font-mono);
 }
@@ -2864,7 +2859,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   color: var(--text-dim);
   padding: 0.4rem 0.9rem;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: var(--radius);
   margin-bottom: 2rem;
 }
 
@@ -2941,7 +2936,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: block;
   font-size: 0.7rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   margin-bottom: 6px;
   padding: 0 12px;
@@ -3098,7 +3093,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   color: var(--text-dim);
   font-size: 0.78rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   font-weight: 500;
   font-family: var(--font-mono);
 }
@@ -3129,7 +3124,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
   display: block;
   font-size: 0.72rem;
   letter-spacing: 0;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--text-dim);
   margin-bottom: 4px;
   font-family: var(--font-mono);
@@ -3362,7 +3357,7 @@ p { margin: 0 0 1rem; color: var(--text-muted); }
 }
 .consent-locked-label {
   font-size: 0.75rem;
-  text-transform: lowercase;
+  text-transform: none;
   letter-spacing: 0;
   color: var(--mint);
   padding: 0.25rem 0.6rem;

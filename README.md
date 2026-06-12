@@ -36,10 +36,10 @@ by Hassan Raza. Not affiliated with Lune Data.
 Financial editorial meets terminal. Lune parses raw transaction strings
 for a living, so the site borrows the visual language of the ledger:
 
-- **Type** — Instrument Serif for display, Public Sans for body,
-  IBM Plex Mono for data, labels, nav, and buttons
+- **Type** — Fraunces (optical sizing) for display, Hanken Grotesk for
+  body and UI, IBM Plex Mono strictly for data: figures, codes, the ticker
 - **Structure** — hairline-ruled rows and columns instead of card grids;
-  lowercase mono section indices (`01 / the platform`) with a moon-phase
+  mono-keyed section indices (`01 / The platform`) with a moon-phase
   glyph that waxes toward full at the proof section (Lune = moon)
 - **Signature element** — the enrichment ticker under the hero: raw card
   descriptors stream past and resolve into clean records
